@@ -1,9 +1,7 @@
 # Object Oriented Programming 101
 This repository contains the rewriten source code of an assignment developed as part of a **Object Oriented Programmin** course at **UTC** during the **Spring 2023** semester.
 
-TODO: Add why this project
-<!-- Why this project? Learn CMake, Qt, GTest, Design Patterns and C++ (RAII, STL). -->
-
+While the project is simple, the work here was an opportunity to learn CMake, Qt, and idiomatic C++ (RAII, STL) by applying real-world software engineering practices to that material.
 ## The project
 
 The project was to be completed during the semester by groups of four to five. In addition to the source code, students were required to write three intermediary reports during the semester and a final report.
