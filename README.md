@@ -55,9 +55,6 @@ TODO: Getting started, get/build/run the code etc.
 
 This project is licensed under the [MIT License](LICENSE).
 
-Feel free to use, modify, and distribute the code as per the terms of the license.
-
-
 ## Acknowledgments
 
 - **Schotten Totten**: Designed by Reiner Knizia and published by IELLO.
