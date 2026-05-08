@@ -14,10 +14,12 @@ The project was to design and develop a **C++** application which allowed us to 
 
 **Schotten Totten** is a 2-player card game where players compete to win "stones" (or territories) on a battlefield. By forming poker-like combinations (e.g., runs, flushes) on each stone, players try to outscore their opponents and secure the majority of stones.
 
-TODO: Rewrite original assigment specification
-<!-- Every functionalities of the original game were to be implemented in the application. Moreover, the application could be played alone.
+The project requirement were as follows:
+- Every functionalities of the original game were to be implemented
+- Each players could be an "AI"
+- The game must be playable at least using a CLI, at best a Qt GUI
+- Finally, the application architecture should be easily extensible, allowing a selection of new functionalities to be added with minimal refactoring.
 
-Finally, the application should be easily extensible by making possible the addition of new functionalities with minimal refactor needed -->
 
 ## Quality and CI/CD Processes
 TODO: detail CI processes
