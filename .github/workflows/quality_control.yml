@@ -1,0 +1,45 @@
+name: Pull Request Quality Check
+run-name: ${{ github.head_ref }} quality control
+on:
+  pull_request: 
+    branches:
+      - main
+jobs:
+  static-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v5
+
+      - name: Setup requirements
+        run: sudo apt-get -y --no-install-recommends install clang-format clang-tidy
+      
+      - name: Code style check
+        run: |
+          find ./src -name "*.cpp" | xargs clang-format --dry-run --Werror
+          find ./include -name "*.h" | xargs clang-format --dry-run --Werror
+
+      - name: Code lint check
+        run: |
+          clang-tidy $(find ./src -name "*.cpp") -- -Iinclude/
+          clang-tidy $(find ./include -name "*.h")
+
+#   build:
+#     needs: static-check
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check out repository code
+#         uses: actions/checkout@v5
+
+#       - name: Build Project
+#         run: 
+
+#   test:
+#       needs: build
+#       runs-on: ubuntu-latest
+#       steps:
+#         - name: Get test artifact
+#           uses: actions/download-artifact@v4
+#           with:
+#             name:
+#             path:
