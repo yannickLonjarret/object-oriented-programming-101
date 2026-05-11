@@ -16,12 +16,12 @@ jobs:
       
       - name: Code style check
         run: |
-          find ./src -name "*.c" | xargs clang-format --dry-run --Werror
+          find ./src -name "*.cpp" | xargs clang-format --dry-run --Werror
           find ./include -name "*.h" | xargs clang-format --dry-run --Werror
 
       - name: Code lint check
         run: |
-          clang-tidy $(find ./src -name "*.c") -- -Iinclude/
+          clang-tidy $(find ./src -name "*.cpp") -- -Iinclude/
           clang-tidy $(find ./include -name "*.h")
 
 #   build:
