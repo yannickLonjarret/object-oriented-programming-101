@@ -50,7 +50,9 @@ This repository follows a GitHubflow branching strategy.
 
 ## Getting started
 TODO: Getting started, get/build/run the code etc.
-
+```mermaid
+info
+```
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
