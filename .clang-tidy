@@ -6,7 +6,8 @@ Checks: >
   misc-*,
   modernize-*,
   performance-*,
-  portability-*
+  portability-*,
 
+  -modernize-use-trailing-return-type
 WarningsAsErrors: >
   '*'
