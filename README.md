@@ -25,7 +25,19 @@ The project specification was as follows:
 ## Software Architecture
 
 ```mermaid
-info
+---
+title: Schotten Totten
+---
+classDiagram
+    class Game
+
+    class Player
+
+    class Card
+
+    class Tile
+
+    class Action
 ```
 
 ## Quality and CI/CD Processes
