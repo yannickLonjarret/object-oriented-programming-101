@@ -22,6 +22,12 @@ The project specification was as follows:
 - The game must be playable at least using a CLI, at best a Qt GUI
 - The application architecture should be easily extensible, allowing a selection of new functionalities to be added with minimal refactoring.
 
+## Software Architecture
+
+```mermaid
+info
+```
+
 ## Quality and CI/CD Processes
 This project code quality and non-regression is ensured through a multitude of means, described as follows.
 
@@ -50,9 +56,7 @@ This repository follows a GitHubflow branching strategy.
 
 ## Getting started
 TODO: Getting started, get/build/run the code etc.
-```mermaid
-info
-```
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
