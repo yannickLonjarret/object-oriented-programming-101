@@ -12,6 +12,8 @@ class CardCombination {
 
   public:
     CardCombination(Type type, int sum) : combinationType(type), sumOfCards(sum) {};
+
+    ~CardCombination() = default;
 };
 
 } // namespace Combination
