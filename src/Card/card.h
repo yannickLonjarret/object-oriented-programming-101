@@ -12,8 +12,8 @@ class ClanCard : public Card {
     const CardColors color;
 
   public:
-    int GetValue() const { return value; }
-    CardColors GetColor() const { return color; }
+    int getValue() const { return value; }
+    CardColors getColor() const { return color; }
 };
 } // namespace Cards
 

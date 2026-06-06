@@ -14,10 +14,10 @@ enum class Type { SUM = 100, SERIE = 200, COLOR = 300, KIND = 400, COLORED_SERIE
 
 Type computeCombinationType(const std::vector<ClanCard>& cards);
 
-bool IsSerie(std::vector<ClanCard> cards);
-bool IsColor(const std::vector<ClanCard>& cards);
-bool IsKind(const std::vector<ClanCard>& cards);
-bool IsColoredSerie(const std::vector<ClanCard>& cards);
+bool isSerie(std::vector<ClanCard> cards);
+bool isColor(const std::vector<ClanCard>& cards);
+bool isKind(const std::vector<ClanCard>& cards);
+bool isColoredSerie(const std::vector<ClanCard>& cards);
 
 class CardCombination {
   private:
@@ -29,12 +29,12 @@ class CardCombination {
 
     CardCombination(const std::vector<ClanCard>& cards) {
         combinationType = computeCombinationType(cards);
-        sumOfCards = std::accumulate(cards.begin(), cards.end(), 0, [](int sum, const ClanCard& c) { return sum + c.GetValue(); });
+        sumOfCards = std::accumulate(cards.begin(), cards.end(), 0, [](int sum, const ClanCard& c) { return sum + c.getValue(); });
     }
 
-    Type GetCombinationType() const { return combinationType; }
+    Type getCombinationType() const { return combinationType; }
 
-    void CombinationTypeConversion(const Type& convertTo);
+    void combinationTypeConversion(const Type& convertTo);
 
     bool operator<(const CardCombination& cc) {
         if (combinationType == cc.combinationType) {
