@@ -31,6 +31,13 @@ class CardCombination {
 
     void CombinationTypeConversion(const Type& convertTo);
 
+    bool operator<(const CardCombination& cc) {
+        if (combinationType == cc.combinationType) {
+            return sumOfCards < cc.sumOfCards;
+        }
+        return combinationType == cc.combinationType;
+    }
+
     ~CardCombination() = default;
 };
 
