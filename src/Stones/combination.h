@@ -27,6 +27,8 @@ class CardCombination {
         sumOfCards = std::accumulate(cards.begin(), cards.end(), 0, [](int sum, const ClanCard& c) { return sum + c.GetValue(); });
     }
 
+    Type GetCombinationType() const { return combinationType; }
+
     ~CardCombination() = default;
 };
 
