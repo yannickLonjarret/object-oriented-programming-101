@@ -3,7 +3,19 @@
 #include <algorithm>
 
 namespace Combination {
-Type computeCombinationType(const std::vector<ClanCard>& cards) {}
+Type computeCombinationType(const std::vector<ClanCard>& cards) {
+    if (isColoredSerie(cards)) {
+        return Type::COLORED_SERIE;
+    } else if (isKind(cards)) {
+        return Type::KIND;
+    } else if (isColor(cards)) {
+        return Type::COLOR;
+    } else if (isSerie(cards)) {
+        return Type::SERIE;
+    } else {
+        return Type::SUM;
+    }
+}
 
 bool isSerie(std::vector<ClanCard> cards) {
     if (cards.empty()) {
