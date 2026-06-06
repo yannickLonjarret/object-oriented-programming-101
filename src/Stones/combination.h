@@ -14,6 +14,11 @@ enum class Type { SUM = 100, SERIE = 200, COLOR = 300, KIND = 400, COLORED_SERIE
 
 Type computeCombinationType(const std::vector<ClanCard>& cards);
 
+bool IsSerie(std::vector<ClanCard> cards);
+bool IsColor(const std::vector<ClanCard>& cards);
+bool IsKind(const std::vector<ClanCard>& cards);
+bool IsColoredSerie(const std::vector<ClanCard>& cards);
+
 class CardCombination {
   private:
     Type combinationType;
