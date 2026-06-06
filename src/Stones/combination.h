@@ -38,6 +38,8 @@ class CardCombination {
         return combinationType == cc.combinationType;
     }
 
+    bool operator==(const CardCombination& cc) { return (combinationType == cc.combinationType) && (sumOfCards == cc.sumOfCards); }
+
     ~CardCombination() = default;
 };
 
