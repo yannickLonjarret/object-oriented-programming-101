@@ -29,6 +29,8 @@ class CardCombination {
 
     Type GetCombinationType() const { return combinationType; }
 
+    void CombinationTypeConversion(const Type& convertTo);
+
     ~CardCombination() = default;
 };
 
