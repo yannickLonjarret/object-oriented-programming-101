@@ -34,8 +34,6 @@ class CardCombination {
 
     Type getCombinationType() const { return combinationType; }
 
-    void combinationTypeConversion(const Type& convertTo);
-
     bool operator<(const CardCombination& cc) {
         if (combinationType == cc.combinationType) {
             return sumOfCards < cc.sumOfCards;

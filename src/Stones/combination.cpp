@@ -52,5 +52,4 @@ bool isKind(const std::vector<ClanCard>& cards) {
 
 bool isColoredSerie(const std::vector<ClanCard>& cards) { return isSerie(cards) && isColor(cards); }
 
-void CardCombination::combinationTypeConversion(const Type& convertTo) {}
 } // namespace Combination
