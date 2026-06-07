@@ -18,7 +18,7 @@ Type computeCombinationType(const std::vector<ClanCard>& cards) {
 }
 
 bool isSerie(std::vector<ClanCard> cards) {
-    if (cards.empty()) {
+    if (cards.empty() || cards.size() == 1) {
         return false;
     }
 
@@ -33,7 +33,7 @@ bool isSerie(std::vector<ClanCard> cards) {
 }
 
 bool isColor(const std::vector<ClanCard>& cards) {
-    if (cards.empty()) {
+    if (cards.empty() || cards.size() == 1) {
         return false;
     }
     const Cards::CardColors referenceColor = cards.front().getColor();
@@ -42,7 +42,7 @@ bool isColor(const std::vector<ClanCard>& cards) {
 }
 
 bool isKind(const std::vector<ClanCard>& cards) {
-    if (cards.empty()) {
+    if (cards.empty() || cards.size() == 1) {
         return false;
     }
     const int referenceValue = cards.front().getValue();
