@@ -8,3 +8,5 @@ target_sources(Combination
         FILES
             combination.h
 )
+
+target_link_libraries(Card)
