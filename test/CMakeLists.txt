@@ -19,6 +19,7 @@ target_link_libraries(
   GameTest
   GTest::gtest_main
   # Add future test here
+  CombinationTest
 )
 
 include(GoogleTest)
