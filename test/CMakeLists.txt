@@ -25,3 +25,4 @@ include(GoogleTest)
 gtest_discover_tests(GameTest)
 
 # Subdirectories:
+add_subdirectory(Stones)
