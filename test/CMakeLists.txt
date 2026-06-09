@@ -23,7 +23,10 @@ target_link_libraries(
 )
 
 include(GoogleTest)
-gtest_discover_tests(GameTest)
+gtest_discover_tests(
+  GameTest
+  CombinationTest
+)
 
 # Subdirectories:
 add_subdirectory(Stones)

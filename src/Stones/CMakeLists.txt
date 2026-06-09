@@ -9,4 +9,7 @@ target_sources(Combination
             combination.h
 )
 
-target_link_libraries(Card)
+target_link_libraries(Combination
+    PUBLIC
+        Card
+)
