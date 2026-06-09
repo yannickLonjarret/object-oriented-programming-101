@@ -8,8 +8,8 @@ class Card {};
 
 class ClanCard : public Card {
   private:
-    const int value;
-    const CardColors color;
+    int value;
+    CardColors color;
 
   public:
     int getValue() const { return value; }
