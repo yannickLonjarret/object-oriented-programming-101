@@ -34,14 +34,14 @@ class CardCombination {
 
     Type getCombinationType() const { return combinationType; }
 
-    bool operator<(const CardCombination& cc) {
+    bool operator<(const CardCombination& cc) const {
         if (combinationType == cc.combinationType) {
             return sumOfCards < cc.sumOfCards;
         }
-        return combinationType == cc.combinationType;
+        return combinationType < cc.combinationType;
     }
 
-    bool operator==(const CardCombination& cc) { return (combinationType == cc.combinationType) && (sumOfCards == cc.sumOfCards); }
+    bool operator==(const CardCombination& cc) const { return (combinationType == cc.combinationType) && (sumOfCards == cc.sumOfCards); }
 
     ~CardCombination() = default;
 };
