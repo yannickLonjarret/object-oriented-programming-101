@@ -21,15 +21,18 @@ jobs:
       - name: Code lint check
         run: |
           clang-tidy $(find ./src -name "*.cpp")
-#   build:
-#     needs: static-check
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Check out repository code
-#         uses: actions/checkout@v5
+  build:
+    needs: static-check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v5
 
-#       - name: Build Project
-#         run: 
+      - name: Build Project
+        run: |
+          cmake -B bin
+          cmake --build bin
+          ls -al ./bin
 
 #   test:
 #       needs: build
