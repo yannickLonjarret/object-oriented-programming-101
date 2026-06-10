@@ -55,6 +55,28 @@ TEST(CombinationIdentification, Color_SingleCard) {
     EXPECT_FALSE(isColor(cards)) << "Single card vector identified as Color";
 }
 
+TEST(CombinationIdentification, KindTrue) {
+    std::vector<ClanCard> cards(3);
+    EXPECT_TRUE(isKind(cards)) << "Kind combination not identified.";
+}
+
+TEST(CombinationIdentification, KindFalse) {
+    std::vector<ClanCard> cards(2);
+    cards.push_back(ClanCard(2, CardColors::BLUE));
+
+    EXPECT_FALSE(isKind(cards)) << "Wrong combination identified as Kind.";
+}
+
+TEST(CombinationIdentification, Kind_EmptyVector) {
+    std::vector<ClanCard> cards;
+    EXPECT_FALSE(isKind(cards)) << "Empty card vector identified as Kind";
+}
+
+TEST(CombinationIdentification, Kind_SingleCard) {
+    std::vector<ClanCard> cards(1);
+    EXPECT_FALSE(isKind(cards)) << "Single card vector identified as Kind";
+}
+
 TEST(CombinationTest, ComparisonOperator_DifferentTypes) {
     CardCombination strongCombination = CardCombination(Type::COLORED_SERIE, 10);
     CardCombination weakCombination = CardCombination(Type::SUM, 12);
