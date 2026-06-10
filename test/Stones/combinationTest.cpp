@@ -4,7 +4,8 @@
 
 using namespace Combination;
 
-TEST(CombinationTest, Property_SerieTrue) {
+// Type identification
+TEST(CombinationIdentification, SerieTrue) {
     std::vector<ClanCard> cards;
     cards.push_back(ClanCard(1, CardColors::BLUE));
     cards.push_back(ClanCard(2, CardColors::BLUE));
@@ -13,7 +14,7 @@ TEST(CombinationTest, Property_SerieTrue) {
     EXPECT_TRUE(isSerie(cards)) << "Serie combination not identified.";
 }
 
-TEST(CombinationTest, Property_SerieFalse) {
+TEST(CombinationIdentification, SerieFalse) {
     std::vector<ClanCard> cards;
     cards.push_back(ClanCard(1, CardColors::BLUE));
     cards.push_back(ClanCard(2, CardColors::BLUE));
@@ -22,12 +23,12 @@ TEST(CombinationTest, Property_SerieFalse) {
     EXPECT_FALSE(isSerie(cards)) << "Wrong combination identified as Serie.";
 }
 
-TEST(CombinationTest, Property_EmptyVector) {
+TEST(CombinationIdentification, Serie_EmptyVector) {
     std::vector<ClanCard> cards;
     EXPECT_FALSE(isSerie(cards)) << "Empty card vector identified as Serie";
 }
 
-TEST(CombinationTest, Property_SingleCard) {
+TEST(CombinationIdentification, Serie_SingleCard) {
     std::vector<ClanCard> cards(1);
     EXPECT_FALSE(isSerie(cards)) << "Single card vector identified as Serie";
 }
