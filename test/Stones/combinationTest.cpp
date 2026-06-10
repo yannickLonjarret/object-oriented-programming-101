@@ -4,6 +4,34 @@
 
 using namespace Combination;
 
+TEST(CombinationTest, Property_SerieTrue) {
+    std::vector<ClanCard> cards;
+    cards.push_back(ClanCard(1, CardColors::BLUE));
+    cards.push_back(ClanCard(2, CardColors::BLUE));
+    cards.push_back(ClanCard(3, CardColors::BLUE));
+
+    EXPECT_TRUE(isSerie(cards)) << "Serie combination not identified.";
+}
+
+TEST(CombinationTest, Property_SerieFalse) {
+    std::vector<ClanCard> cards;
+    cards.push_back(ClanCard(1, CardColors::BLUE));
+    cards.push_back(ClanCard(2, CardColors::BLUE));
+    cards.push_back(ClanCard(2, CardColors::BLUE));
+
+    EXPECT_FALSE(isSerie(cards)) << "Wrong combination identified as Serie.";
+}
+
+TEST(CombinationTest, Property_EmptyVector) {
+    std::vector<ClanCard> cards;
+    EXPECT_FALSE(isSerie(cards)) << "Empty card vector identified as Serie";
+}
+
+TEST(CombinationTest, Property_SingleCard) {
+    std::vector<ClanCard> cards(1);
+    EXPECT_FALSE(isSerie(cards)) << "Single card vector identified as Serie";
+}
+
 TEST(CombinationTest, ComparisonOperator_DifferentTypes) {
     CardCombination strongCombination = CardCombination(Type::COLORED_SERIE, 10);
     CardCombination weakCombination = CardCombination(Type::SUM, 12);
