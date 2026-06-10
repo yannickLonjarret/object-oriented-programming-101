@@ -42,8 +42,6 @@ class CardCombination {
     }
 
     bool operator==(const CardCombination& cc) const { return (combinationType == cc.combinationType) && (sumOfCards == cc.sumOfCards); }
-
-    ~CardCombination() = default;
 };
 
 } // namespace Combination
