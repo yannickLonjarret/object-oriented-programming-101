@@ -51,5 +51,5 @@ jobs:
 
         - name: Run test artifact
           run: |
-            chmod +x build/bin/SchottenTest
-            build/bin/SchottenTest
+            chmod +x build/bin/GameTest
+            build/bin/GameTest
