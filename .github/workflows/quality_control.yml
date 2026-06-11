@@ -23,7 +23,7 @@ jobs:
 
       - name: Code lint check
         run: |
-          clang-tidy $(find ./src -name "*.cpp")
+          clang-tidy -p build $(find ./src -name "*.cpp")
   build:
     needs: static-check
     runs-on: ubuntu-latest
