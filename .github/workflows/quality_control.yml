@@ -14,6 +14,9 @@ jobs:
       - name: Setup requirements
         run: sudo apt-get -y --no-install-recommends install clang-format clang-tidy
       
+      - name: Configure project
+        run: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B build
+
       - name: Code style check
         run: |
           find ./src -name "*.cpp" | xargs clang-format --dry-run --Werror
@@ -22,15 +25,14 @@ jobs:
         run: |
           clang-tidy $(find ./src -name "*.cpp")
   build:
+    needs: static-check
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v5
 
       - name: Build Project
-        run: |
-          cmake -B build
-          cmake --build build
+        run: cmake --build build
     
       - name: Save test artifact
         uses: actions/upload-artifact@v6
