@@ -29,15 +29,27 @@ jobs:
 
       - name: Build Project
         run: |
-          cmake -B bin
-          cmake --build bin
+          cmake -B build
+          cmake --build build
+    
+      - name: Save test artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: SchottenTest
+          path: |
+            build/bin/GameTest
 
-#   test:
-#       needs: build
-#       runs-on: ubuntu-latest
-#       steps:
-#         - name: Get test artifact
-#           uses: actions/download-artifact@v4
-#           with:
-#             name:
-#             path:
+  test:
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Get test artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: SchottenTest
+            path: build/bin
+
+        - name: Run test artifact
+          run: |
+            chmod +x build/bin/SchottenTest
+            build/bin/SchottenTest
