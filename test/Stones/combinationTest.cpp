@@ -120,38 +120,38 @@ TEST(CombinationIdentification, CombinationType_ColoredSerie) {
     cards.push_back(ClanCard(2, CardColors::BLUE));
     cards.push_back(ClanCard(3, CardColors::BLUE));
 
-    EXPECT_EQ(Type::COLORED_SERIE, computeCombinationType(cards));
+    EXPECT_EQ(Type::COLORED_SERIE, computeCombinationType(cards)) << "Colored Serie combination not identified.";
 }
 
 TEST(CombinationIdentification, CombinationType_Kind) {
     std::vector<ClanCard> cards(2);
-    EXPECT_EQ(Type::KIND, computeCombinationType(cards));
+    EXPECT_EQ(Type::KIND, computeCombinationType(cards)) << "Kind combination not identified.";
 }
 
 TEST(CombinationIdentification, CombinationType_Color) {
     std::vector<ClanCard> cards;
     cards.push_back(ClanCard(1, CardColors::BLUE));
     cards.push_back(ClanCard(3, CardColors::BLUE));
-    EXPECT_EQ(Type::COLOR, computeCombinationType(cards));
+    EXPECT_EQ(Type::COLOR, computeCombinationType(cards)) << "Color combination not identified.";
 }
 
 TEST(CombinationIdentification, CombinationType_Serie) {
     std::vector<ClanCard> cards;
     cards.push_back(ClanCard(1, CardColors::BLUE));
     cards.push_back(ClanCard(2, CardColors::RED));
-    EXPECT_EQ(Type::SERIE, computeCombinationType(cards));
+    EXPECT_EQ(Type::SERIE, computeCombinationType(cards)) << "Serie combination not identified.";
 }
 
 TEST(CombinationIdentification, CombinationType_Sum) {
     std::vector<ClanCard> cards;
     cards.push_back(ClanCard(1, CardColors::BLUE));
     cards.push_back(ClanCard(3, CardColors::RED));
-    EXPECT_EQ(Type::SUM, computeCombinationType(cards));
+    EXPECT_EQ(Type::SUM, computeCombinationType(cards)) << "Sum combination not identified.";
 }
 
 TEST(CombinationIdentification, CombinationType_EmptyInput) {
     std::vector<ClanCard> cards;
-    EXPECT_EQ(Type::SUM, computeCombinationType(cards));
+    EXPECT_EQ(Type::SUM, computeCombinationType(cards)) << "Unexpected behavior on empty cards vector combination not identified.";
 }
 
 TEST(CombinationTest, ComparisonOperator_DifferentTypes) {
