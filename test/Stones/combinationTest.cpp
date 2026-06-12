@@ -114,6 +114,46 @@ TEST(CombinationIdentification, ColoredSerie_SingleCard) {
     EXPECT_FALSE(isColoredSerie(cards)) << "Single card vector identified as ColoredSerie";
 }
 
+TEST(CombinationIdentification, CombinationType_ColoredSerie) {
+    std::vector<ClanCard> cards;
+    cards.push_back(ClanCard(1, CardColors::BLUE));
+    cards.push_back(ClanCard(2, CardColors::BLUE));
+    cards.push_back(ClanCard(3, CardColors::BLUE));
+
+    EXPECT_EQ(Type::COLORED_SERIE, computeCombinationType(cards));
+}
+
+TEST(CombinationIdentification, CombinationType_Kind) {
+    std::vector<ClanCard> cards(2);
+    EXPECT_EQ(Type::KIND, computeCombinationType(cards));
+}
+
+TEST(CombinationIdentification, CombinationType_Color) {
+    std::vector<ClanCard> cards;
+    cards.push_back(ClanCard(1, CardColors::BLUE));
+    cards.push_back(ClanCard(3, CardColors::BLUE));
+    EXPECT_EQ(Type::COLOR, computeCombinationType(cards));
+}
+
+TEST(CombinationIdentification, CombinationType_Serie) {
+    std::vector<ClanCard> cards;
+    cards.push_back(ClanCard(1, CardColors::BLUE));
+    cards.push_back(ClanCard(2, CardColors::RED));
+    EXPECT_EQ(Type::SERIE, computeCombinationType(cards));
+}
+
+TEST(CombinationIdentification, CombinationType_Sum) {
+    std::vector<ClanCard> cards;
+    cards.push_back(ClanCard(1, CardColors::BLUE));
+    cards.push_back(ClanCard(3, CardColors::RED));
+    EXPECT_EQ(Type::SUM, computeCombinationType(cards));
+}
+
+TEST(CombinationIdentification, CombinationType_EmptyInput) {
+    std::vector<ClanCard> cards;
+    EXPECT_EQ(Type::SUM, computeCombinationType(cards));
+}
+
 TEST(CombinationTest, ComparisonOperator_DifferentTypes) {
     CardCombination strongCombination = CardCombination(Type::COLORED_SERIE, 10);
     CardCombination weakCombination = CardCombination(Type::SUM, 12);
