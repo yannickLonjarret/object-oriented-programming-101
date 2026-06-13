@@ -9,5 +9,8 @@ target_sources(Stone
             stone.h
 )
 
+target_link_libraries(Stone
+    PRIVATE
+        Combination)
 
 add_subdirectory(Combination)
