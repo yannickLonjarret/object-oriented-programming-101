@@ -14,3 +14,4 @@ target_link_libraries(Stone
         Combination)
 
 add_subdirectory(Combination)
+add_subdirectory(Side)
