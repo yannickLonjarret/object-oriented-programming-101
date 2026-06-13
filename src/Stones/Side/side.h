@@ -1,9 +1,9 @@
 #ifndef SIDE_H
 #define SIDE_H
 
-namespace Side {
-class StoneSide {};
+namespace Stone {
+class Side {};
 
-} // namespace Side
+} // namespace Stone
 
 #endif
