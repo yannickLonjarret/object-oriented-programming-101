@@ -10,7 +10,7 @@ target_sources(Side
 )
 
 target_link_libraries(Side
-    PRIVATE
+    PUBLIC
         Card
         PlayerId
         
