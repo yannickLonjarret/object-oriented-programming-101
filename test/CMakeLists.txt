@@ -20,12 +20,14 @@ target_link_libraries(
   GTest::gtest_main
   # Add future test here
   CombinationTest
+  SideTest
 )
 
 include(GoogleTest)
 gtest_discover_tests(
   GameTest
   CombinationTest
+  SideTest
 )
 
 # Subdirectories:
