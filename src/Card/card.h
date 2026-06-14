@@ -14,8 +14,10 @@ class ClanCard : public Card {
   public:
     ClanCard(int v = -1, CardColors c = CardColors::EMPTY) : value(v), color(c) {};
 
-    int getValue() const { return value; }
-    CardColors getColor() const { return color; }
+    inline int getValue() const noexcept { return value; }
+    inline CardColors getColor() const noexcept { return color; }
+
+    inline bool operator==(const ClanCard& c) const { return color == c.color && value == c.value; };
 };
 } // namespace Cards
 
