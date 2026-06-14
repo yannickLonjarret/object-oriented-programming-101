@@ -8,3 +8,10 @@ target_sources(Side
         FILES
             side.h
 )
+
+target_link_libraries(Side
+    PRIVATE
+        Card
+        PlayerId
+        
+)
