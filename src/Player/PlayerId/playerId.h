@@ -9,7 +9,7 @@ class PlayerID {
 
   public:
     PlayerID(size_t givenId = 0) : id(givenId) {};
-    bool operator==(const PlayerID& p) const = default;
+    inline bool operator==(const PlayerID& p) const noexcept = default;
 };
 
 } // namespace Agent
