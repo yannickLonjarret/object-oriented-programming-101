@@ -61,7 +61,7 @@ TEST(StoneSide, getPlayedCards_Filled) {
     c = Cards::ClanCard(2, Cards::CardColors::RED);
     s.playCard(std::move(c));
 
-    std::vector<Cards::ClanCard> vec = s.getPlayedCards();
+    const std::vector<Cards::ClanCard>& vec = s.getPlayedCards();
 
     EXPECT_FALSE(vec.empty());
     EXPECT_EQ(vec.size(), 2);
