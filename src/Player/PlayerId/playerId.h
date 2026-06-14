@@ -1,6 +1,9 @@
 #ifndef PLAYERID_H
 #define PLAYERID_H
 
+#include <functional>
+#include <string>
+
 namespace Agent {
 
 class PlayerID {
@@ -8,7 +11,7 @@ class PlayerID {
     size_t id;
 
   public:
-    PlayerID(size_t givenId = 0) : id(givenId) {};
+    PlayerID(std::string stringToHash = "Hello world") { id = std::hash<std::string>()(stringToHash); };
     inline bool operator==(const PlayerID& p) const noexcept = default;
 };
 
