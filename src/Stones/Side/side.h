@@ -16,7 +16,7 @@ class Side {
     std::vector<Cards::ClanCard> playedCards;
 
   public:
-    Side(Agent::PlayerID id, size_t max = 3) : owner(id), maxPlayableCardCount(max) { playedCards.reserve(maxPlayableCardCount); }
+    Side(Agent::PlayerID id = Agent::PlayerID(), size_t max = 3) : owner(id), maxPlayableCardCount(max) { playedCards.reserve(maxPlayableCardCount); }
 
     inline Agent::PlayerID getOwner() const noexcept { return owner; }
 
