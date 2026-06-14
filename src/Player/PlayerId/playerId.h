@@ -8,6 +8,7 @@ class PlayerID {
     size_t id;
 
   public:
+    PlayerID(size_t givenId = 0) : id(givenId) {};
     bool operator==(const PlayerID& p) const = default;
 };
 
