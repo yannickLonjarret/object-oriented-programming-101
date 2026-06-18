@@ -5,23 +5,24 @@
 TEST(StoneSide, PlayCard_Success) {
     Stone::Side s = Stone::Side();
     Cards::ClanCard c = Cards::ClanCard();
-    EXPECT_NO_THROW(s.playCard(std::move(c)));
+    EXPECT_TRUE(s.try_playCard(std::move(c)));
 }
 
 TEST(StoneSide, PlayCard_Failure) {
     Agent::PlayerID id = Agent::PlayerID();
     Stone::Side s = Stone::Side(id, 0);
     Cards::ClanCard c = Cards::ClanCard();
-    EXPECT_THROW(s.playCard(std::move(c)), std::logic_error);
+    EXPECT_FALSE(s.try_playCard(std::move(c)));
+    EXPECT_EQ(c.getColor(), Cards::CardColors::EMPTY);
 }
 
 TEST(StoneSide, PlayCard_FailureAfterFill) {
     Agent::PlayerID id = Agent::PlayerID();
     Stone::Side s = Stone::Side(id, 1);
     Cards::ClanCard c = Cards::ClanCard();
-    EXPECT_NO_THROW(s.playCard(std::move(c)));
+    EXPECT_TRUE(s.try_playCard(std::move(c)));
     c = Cards::ClanCard();
-    EXPECT_THROW(s.playCard(std::move(c)), std::logic_error);
+    EXPECT_FALSE(s.try_playCard(std::move(c)));
 }
 
 TEST(StoneSide, isComplete_False) {
@@ -34,7 +35,7 @@ TEST(StoneSide, isComplete_True) {
     Stone::Side s = Stone::Side(id, 1);
     Cards::ClanCard c = Cards::ClanCard();
 
-    s.playCard(std::move(c));
+    s.try_playCard(std::move(c));
     EXPECT_TRUE(s.isComplete());
 }
 
@@ -44,7 +45,7 @@ TEST(StoneSide, isComplete_StatusTransition) {
     Cards::ClanCard c = Cards::ClanCard();
 
     EXPECT_FALSE(s.isComplete());
-    s.playCard(std::move(c));
+    s.try_playCard(std::move(c));
     EXPECT_TRUE(s.isComplete());
 }
 
@@ -57,9 +58,9 @@ TEST(StoneSide, getPlayedCards_Filled) {
     Stone::Side s = Stone::Side();
 
     Cards::ClanCard c = Cards::ClanCard(5, Cards::CardColors::BROWN);
-    s.playCard(std::move(c));
+    s.try_playCard(std::move(c));
     c = Cards::ClanCard(2, Cards::CardColors::RED);
-    s.playCard(std::move(c));
+    s.try_playCard(std::move(c));
 
     const std::vector<Cards::ClanCard>& vec = s.getPlayedCards();
 

@@ -2,7 +2,7 @@
 
 namespace Stone {
 
-bool Side::try_playCard(Cards::ClanCard&& cardToPlay) {
+bool Side::try_playCard(Cards::ClanCard&& cardToPlay) noexcept {
     if (isComplete()) {
         return false;
     }
