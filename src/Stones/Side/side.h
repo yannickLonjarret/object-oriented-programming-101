@@ -24,12 +24,7 @@ class Side {
 
     inline bool isComplete() const noexcept { return playedCards.size() >= maxPlayableCardCount; }
 
-    inline void playCard(Cards::ClanCard&& cardToPlay) {
-        if (isComplete()) {
-            throw std::logic_error("Cannot play card, complete site.");
-        }
-        playedCards.push_back(std::move(cardToPlay));
-    }
+    bool try_playCard(Cards::ClanCard&& cardToPlay) noexcept;
 };
 
 } // namespace Stone
