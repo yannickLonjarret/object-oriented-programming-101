@@ -12,7 +12,8 @@ class PlayerID {
 
   public:
     PlayerID(std::string stringToHash = "Hello world") { id = std::hash<std::string>()(stringToHash); };
-    inline bool operator==(const PlayerID& p) const noexcept = default;
+    inline bool operator==(const PlayerID& p) const noexcept { return id == p.id; };
+    inline bool operator<(const PlayerID& p) const noexcept { return id < p.id; };
 };
 
 } // namespace Agent
