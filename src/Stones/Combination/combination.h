@@ -25,7 +25,7 @@ class CardCombination {
     int sumOfCards;
 
   public:
-    CardCombination(Type type, int sum) : combinationType(type), sumOfCards(sum) {};
+    CardCombination(Type type = Type::SUM, int sum = 0) : combinationType(type), sumOfCards(sum) {};
 
     CardCombination(const std::vector<ClanCard>& cards) {
         combinationType = computeCombinationType(cards);
