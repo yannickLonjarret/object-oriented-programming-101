@@ -1,5 +1,7 @@
 #include "stone.h"
 
+using namespace Combination;
+
 namespace Stone {
 
 bool Stone::canPlayerClaim(const Agent::PlayerID& player) const {
@@ -11,12 +13,39 @@ bool Stone::canPlayerClaim(const Agent::PlayerID& player) const {
     return it->second.isComplete();
 }
 
-void Stone::claimStoneAs(const Agent::PlayerID& player) {
+bool Stone::tryClaimStoneAs(const Agent::PlayerID& player) {
     if (!canPlayerClaim(player)) {
-        // TODO: Add a better claim failure handler
-        return;
+        return false;
     }
-    // TODO: Claim logic
+
+    for (const auto& [_, otherSide] : playerSides) {
+        if (!otherSide.isComplete()) {
+            return false;
+        }
+    }
+
+    const Side& side = playerSides.at(player);
+    CardCombination highestCombination = CardCombination(side.getPlayedCards());
+    Agent::PlayerID winner = player;
+    for (const auto& [otherPlayer, otherSide] : playerSides) {
+        if (otherPlayer == player) {
+            continue;
+        }
+
+        CardCombination candidate(otherSide.getPlayedCards());
+        if (highestCombination == candidate) {
+            // TODO tie break logic
+        }
+
+        if (highestCombination < candidate) {
+            highestCombination = candidate;
+            winner = otherPlayer;
+        }
+    }
+
+    claimedBy = winner;
+
+    return true;
 }
 
 } // namespace Stone
