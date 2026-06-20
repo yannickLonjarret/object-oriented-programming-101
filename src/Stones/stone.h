@@ -23,9 +23,9 @@ class Stone {
 
     bool canPlayerClaim(const Agent::PlayerID& player) const;
 
-    bool tryClaimStoneAs(const Agent::PlayerID& player);
+    bool tryClaimStoneCombinationAs(const Agent::PlayerID& player);
 
-    bool tryClaimStoneAs(const Agent::PlayerID& player, const std::vector<Cards::ClanCard>& possibleCards);
+    bool tryClaimStoneProofAs(const Agent::PlayerID& player, const std::vector<Cards::ClanCard>& possibleCards);
 };
 } // namespace Stone
 

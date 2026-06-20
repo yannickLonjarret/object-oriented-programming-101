@@ -13,7 +13,7 @@ bool Stone::canPlayerClaim(const Agent::PlayerID& player) const {
     return it->second.isComplete();
 }
 
-bool Stone::tryClaimStoneAs(const Agent::PlayerID& player) {
+bool Stone::tryClaimStoneCombinationAs(const Agent::PlayerID& player) {
     if (!canPlayerClaim(player)) {
         return false;
     }
