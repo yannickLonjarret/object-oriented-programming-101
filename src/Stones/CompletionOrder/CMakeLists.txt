@@ -8,3 +8,8 @@ target_sources(CompletionOrder
         FILES
             completionOrder.h
 )
+
+target_link_libraries(CompletionOrder
+    PRIVATE
+        PlayerId
+)
