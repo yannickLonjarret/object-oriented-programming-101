@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "combination.h"
+#include "completionOrder.h"
 #include "playerId.h"
 #include "side.h"
 
@@ -17,6 +18,7 @@ class Stone {
     std::vector<Combination::Type> eligibleCombinations;
     std::map<Agent::PlayerID, Side> playerSides;
     std::optional<Agent::PlayerID> claimedBy;
+    CompletionOrder history;
 
   public:
     inline bool isClaimed() const noexcept { return claimedBy.has_value(); }

@@ -34,7 +34,7 @@ bool Stone::tryClaimStoneCombinationAs(const Agent::PlayerID& player) {
 
         CardCombination candidate(otherSide.getPlayedCards());
         if (highestCombination == candidate) {
-            // TODO tie break logic
+            winner = history.getEarliest(winner, otherPlayer);
         }
 
         if (highestCombination < candidate) {
