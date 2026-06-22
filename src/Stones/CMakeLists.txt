@@ -12,8 +12,10 @@ target_sources(Stone
 target_link_libraries(Stone
     PRIVATE
         Combination
+        CompletionOrder
         Side
         PlayerId)
 
 add_subdirectory(Combination)
 add_subdirectory(Side)
+add_subdirectory(CompletionOrder)
