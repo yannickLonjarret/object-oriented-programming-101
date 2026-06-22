@@ -9,7 +9,7 @@ class CompletionOrder {
 
   public:
     inline Agent::PlayerID getFirstToComplete() const noexcept { return order.front(); }
-    Agent::PlayerID getEarliest(const Agent::PlayerID& candidate, const Agent::PlayerID& contender) const;
+    [[nodiscard]] Agent::PlayerID getEarliest(const Agent::PlayerID& candidate, const Agent::PlayerID& contender) const;
     void addCompletion(const Agent::PlayerID& player);
 };
 
