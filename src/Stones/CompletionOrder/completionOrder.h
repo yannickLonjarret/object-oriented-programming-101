@@ -1,3 +1,6 @@
+#ifndef COMPLETION_ORDER_H
+#define COMPLETION_ORDER_H
+
 #include <deque>
 
 #include "playerId.h"
@@ -13,3 +16,4 @@ class CompletionOrder {
 };
 
 } // namespace Stone
+#endif
