@@ -8,5 +8,6 @@ target_link_libraries(CompletionOrderTest
   PUBLIC
     GTest::gtest_main
     CompletionOrder
+    PlayerId
 )
 
