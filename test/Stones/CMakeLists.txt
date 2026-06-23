@@ -1,2 +1,3 @@
 add_subdirectory(Combination)
+add_subdirectory(CompletionOrder)
 add_subdirectory(Side)
