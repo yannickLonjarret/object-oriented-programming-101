@@ -20,6 +20,7 @@ target_link_libraries(
   GTest::gtest_main
   # Add future test here
   CombinationTest
+  CompletionOrderTest
   SideTest
   PlayerIdTest
 )
