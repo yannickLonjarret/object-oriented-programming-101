@@ -9,16 +9,14 @@ TEST(StoneSide, PlayCard_Success) {
 }
 
 TEST(StoneSide, PlayCard_Failure) {
-    Agent::PlayerID id = Agent::PlayerID();
-    Stone::Side s = Stone::Side(id, 0);
+    Stone::Side s = Stone::Side(0);
     Cards::ClanCard c = Cards::ClanCard();
     EXPECT_FALSE(s.try_playCard(std::move(c)));
     EXPECT_EQ(c.getColor(), Cards::CardColors::EMPTY);
 }
 
 TEST(StoneSide, PlayCard_FailureAfterFill) {
-    Agent::PlayerID id = Agent::PlayerID();
-    Stone::Side s = Stone::Side(id, 1);
+    Stone::Side s = Stone::Side(1);
     Cards::ClanCard c = Cards::ClanCard();
     EXPECT_TRUE(s.try_playCard(std::move(c)));
     c = Cards::ClanCard();
@@ -31,8 +29,7 @@ TEST(StoneSide, isComplete_False) {
 }
 
 TEST(StoneSide, isComplete_True) {
-    Agent::PlayerID id = Agent::PlayerID();
-    Stone::Side s = Stone::Side(id, 1);
+    Stone::Side s = Stone::Side(1);
     Cards::ClanCard c = Cards::ClanCard();
 
     s.try_playCard(std::move(c));
@@ -40,8 +37,7 @@ TEST(StoneSide, isComplete_True) {
 }
 
 TEST(StoneSide, isComplete_StatusTransition) {
-    Agent::PlayerID id = Agent::PlayerID();
-    Stone::Side s = Stone::Side(id, 1);
+    Stone::Side s = Stone::Side(1);
     Cards::ClanCard c = Cards::ClanCard();
 
     EXPECT_FALSE(s.isComplete());
@@ -68,9 +64,4 @@ TEST(StoneSide, getPlayedCards_Filled) {
     EXPECT_EQ(vec.size(), 2);
     EXPECT_EQ(vec.at(0), Cards::ClanCard(5, Cards::CardColors::BROWN));
     EXPECT_EQ(vec.at(1), Cards::ClanCard(2, Cards::CardColors::RED));
-}
-
-TEST(StoneSide, getOwner) {
-    Stone::Side s = Stone::Side();
-    EXPECT_EQ(s.getOwner(), Agent::PlayerID());
 }
