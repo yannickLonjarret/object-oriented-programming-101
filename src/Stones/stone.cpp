@@ -4,6 +4,19 @@ using namespace Combination;
 
 namespace Stone {
 
+bool Stone::tryPlayCardAs(const Agent::PlayerID& player, const Cards::ClanCard& card) {
+    if (isClaimed()) {
+        return false;
+    }
+
+    auto& it = playerSides.find(player);
+    if (it == playerSides.end()) {
+        return false;
+    }
+
+    return it->second.try_playCard(card);
+}
+
 bool Stone::canPlayerClaim(const Agent::PlayerID& player) const {
     const auto it = playerSides.find(player);
 

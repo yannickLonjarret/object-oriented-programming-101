@@ -29,6 +29,8 @@ class Stone {
         }
     }
 
+    bool tryPlayCardAs(const Agent::PlayerID& player, const Cards::ClanCard& card);
+
     inline bool isClaimed() const noexcept { return claimedBy.has_value(); }
 
     bool canPlayerClaim(const Agent::PlayerID& player) const;
