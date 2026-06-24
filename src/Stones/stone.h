@@ -21,6 +21,14 @@ class Stone {
     CompletionOrder history;
 
   public:
+    Stone() {};
+
+    Stone(const std::vector<Agent::PlayerID>& players, const std::vector<Combination::Type>& combinations) : eligibleCombinations(combinations) {
+        for (const auto& p : players) {
+            playerSides.try_emplace(p);
+        }
+    }
+
     inline bool isClaimed() const noexcept { return claimedBy.has_value(); }
 
     bool canPlayerClaim(const Agent::PlayerID& player) const;
