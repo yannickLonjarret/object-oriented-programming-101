@@ -20,7 +20,7 @@ class Side {
 
     inline bool isComplete() const noexcept { return playedCards.size() >= maxPlayableCardCount; }
 
-    bool try_playCard(Cards::ClanCard&& cardToPlay) noexcept;
+    bool try_playCard(const Cards::ClanCard& cardToPlay);
 };
 
 } // namespace Stone

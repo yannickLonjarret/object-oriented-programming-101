@@ -2,11 +2,11 @@
 
 namespace Stone {
 
-bool Side::try_playCard(Cards::ClanCard&& cardToPlay) noexcept {
+bool Side::try_playCard(const Cards::ClanCard& cardToPlay) {
     if (isComplete()) {
         return false;
     }
-    playedCards.push_back(std::move(cardToPlay));
+    playedCards.push_back(cardToPlay);
     return true;
 }
 
