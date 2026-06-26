@@ -46,11 +46,9 @@ bool Stone::tryResoveStoneCombinationAs(const Agent::PlayerID& player) {
         }
 
         CardCombination candidate(otherSide.getPlayedCards());
-        if (highestCombination == candidate) {
+        if (highestCombination == candidate) [[unlikely]] {
             winner = history.getEarliest(winner, otherPlayer);
-        }
-
-        if (highestCombination < candidate) {
+        } else if (highestCombination < candidate) {
             highestCombination = candidate;
             winner = otherPlayer;
         }
