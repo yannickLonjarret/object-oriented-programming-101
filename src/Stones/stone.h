@@ -35,7 +35,7 @@ class Stone {
 
     bool canPlayerClaim(const Agent::PlayerID& player) const;
 
-    bool tryClaimStoneCombinationAs(const Agent::PlayerID& player);
+    bool tryResoveStoneCombinationAs(const Agent::PlayerID& player);
 
     bool tryClaimStoneProofAs(const Agent::PlayerID& player, const std::vector<Cards::ClanCard>& possibleCards);
 };
