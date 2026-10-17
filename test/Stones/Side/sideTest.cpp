@@ -3,20 +3,20 @@
 #include "side.h"
 
 TEST(StoneSide, PlayCard_Success) {
-    Stone::Side s = Stone::Side();
+    Stone::Side s;
     Cards::ClanCard c = Cards::ClanCard();
     EXPECT_TRUE(s.try_playCard(std::move(c)));
 }
 
 TEST(StoneSide, PlayCard_Failure) {
-    Stone::Side s = Stone::Side(0);
+    Stone::Side s(0);
     Cards::ClanCard c = Cards::ClanCard();
     EXPECT_FALSE(s.try_playCard(std::move(c)));
     EXPECT_EQ(c.getColor(), Cards::CardColors::EMPTY);
 }
 
 TEST(StoneSide, PlayCard_FailureAfterFill) {
-    Stone::Side s = Stone::Side(1);
+    Stone::Side s(1);
     Cards::ClanCard c = Cards::ClanCard();
     EXPECT_TRUE(s.try_playCard(std::move(c)));
     c = Cards::ClanCard();
@@ -24,12 +24,12 @@ TEST(StoneSide, PlayCard_FailureAfterFill) {
 }
 
 TEST(StoneSide, isComplete_False) {
-    Stone::Side s = Stone::Side();
+    Stone::Side s;
     EXPECT_FALSE(s.isComplete());
 }
 
 TEST(StoneSide, isComplete_True) {
-    Stone::Side s = Stone::Side(1);
+    Stone::Side s(1);
     Cards::ClanCard c = Cards::ClanCard();
 
     s.try_playCard(std::move(c));
@@ -37,7 +37,7 @@ TEST(StoneSide, isComplete_True) {
 }
 
 TEST(StoneSide, isComplete_StatusTransition) {
-    Stone::Side s = Stone::Side(1);
+    Stone::Side s(1);
     Cards::ClanCard c = Cards::ClanCard();
 
     EXPECT_FALSE(s.isComplete());
@@ -46,12 +46,12 @@ TEST(StoneSide, isComplete_StatusTransition) {
 }
 
 TEST(StoneSide, getPlayedCards_Empty) {
-    Stone::Side s = Stone::Side();
+    Stone::Side s;
     EXPECT_TRUE(s.getPlayedCards().empty());
 }
 
 TEST(StoneSide, getPlayedCards_Filled) {
-    Stone::Side s = Stone::Side();
+    Stone::Side s;
 
     Cards::ClanCard c = Cards::ClanCard(5, Cards::CardColors::BROWN);
     s.try_playCard(std::move(c));

@@ -5,7 +5,7 @@
 using namespace Stone;
 
 TEST(CompletionOrder, GetEarliest_ExceptionBadContender) {
-    Agent::PlayerID candidate = Agent::PlayerID("Test1");
+    Agent::PlayerID candidate("Test1");
     Agent::PlayerID contender;
 
     CompletionOrder order;
@@ -14,7 +14,7 @@ TEST(CompletionOrder, GetEarliest_ExceptionBadContender) {
 }
 
 TEST(CompletionOrder, GetEarliest_ExceptionBadCandidate) {
-    Agent::PlayerID contender = Agent::PlayerID("Test1");
+    Agent::PlayerID contender("Test1");
     Agent::PlayerID candidate;
 
     CompletionOrder order;
@@ -23,8 +23,8 @@ TEST(CompletionOrder, GetEarliest_ExceptionBadCandidate) {
 }
 
 TEST(CompletionOrder, GetEarliest_EarlyCandidate) {
-    Agent::PlayerID candidate = Agent::PlayerID("Test1");
-    Agent::PlayerID contender = Agent::PlayerID("Test2");
+    Agent::PlayerID candidate("Test1");
+    Agent::PlayerID contender("Test2");
 
     CompletionOrder order;
     order.addCompletion(candidate);
@@ -33,8 +33,8 @@ TEST(CompletionOrder, GetEarliest_EarlyCandidate) {
 }
 
 TEST(CompletionOrder, GetEarliest_EarlyContender) {
-    Agent::PlayerID candidate = Agent::PlayerID("Test1");
-    Agent::PlayerID contender = Agent::PlayerID("Test2");
+    Agent::PlayerID candidate("Test1");
+    Agent::PlayerID contender("Test2");
 
     CompletionOrder order;
     order.addCompletion(contender);
