@@ -1,6 +1,9 @@
 #include "combination.h"
+#include "card.h"
 
 #include <algorithm>
+#include <iterator>
+#include <vector>
 
 namespace Combination {
 Type computeCombinationType(const std::vector<ClanCard>& cards) {

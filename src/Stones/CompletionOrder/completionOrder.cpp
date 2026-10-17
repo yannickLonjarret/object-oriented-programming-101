@@ -1,4 +1,7 @@
 #include "completionOrder.h"
+#include "playerId.h"
+
+#include <algorithm>
 #include <stdexcept>
 
 namespace Stone {
