@@ -20,13 +20,13 @@ target_link_libraries(
   GTest::gtest_main
   # Add future test here
   CombinationTest
-  CompletionOrderTest
-  SideTest
-  PlayerIdTest
 )
 
 include(GoogleTest)
+gtest_discover_tests(
+  GameTest
+  CombinationTest
+)
 
 # Subdirectories:
 add_subdirectory(Stones)
-add_subdirectory(Player)
