@@ -38,8 +38,8 @@ bool Stone::tryResoveStoneCombinationAs(const Agent::PlayerID& player) {
     }
 
     const Side& side = playerSides.at(player);
-    CardCombination highestCombination = CardCombination(side.getPlayedCards());
-    Agent::PlayerID winner = player;
+    CardCombination highestCombination(side.getPlayedCards());
+    Agent::PlayerID winner(player);
     for (const auto& [otherPlayer, otherSide] : playerSides) {
         if (otherPlayer == player) {
             continue;
