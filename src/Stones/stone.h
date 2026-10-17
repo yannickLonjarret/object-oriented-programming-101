@@ -35,9 +35,9 @@ class Stone {
 
     bool canPlayerClaim(const Agent::PlayerID& player) const;
 
-    bool tryResoveStoneCombinationAs(const Agent::PlayerID& player);
+    bool tryResolveStoneCombinationAs(const Agent::PlayerID& player);
 
-    bool tryClaimStoneProofAs(const Agent::PlayerID& player, const std::vector<Cards::ClanCard>& possibleCards);
+    bool tryClaimStoneByProofAs(const Agent::PlayerID& player, const std::vector<Cards::ClanCard>& possibleCards);
 };
 } // namespace Stone
 
