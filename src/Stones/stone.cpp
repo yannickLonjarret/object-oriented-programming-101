@@ -9,7 +9,7 @@ bool Stone::tryPlayCardAs(const Agent::PlayerID& player, const Cards::ClanCard& 
         return false;
     }
 
-    auto& it = playerSides.find(player);
+    const auto it = playerSides.find(player);
     if (it == playerSides.end()) {
         return false;
     }
