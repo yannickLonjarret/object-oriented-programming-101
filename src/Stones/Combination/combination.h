@@ -32,16 +32,16 @@ class CardCombination {
         sumOfCards = std::accumulate(cards.begin(), cards.end(), 0, [](int sum, const ClanCard& c) { return sum + c.getValue(); });
     }
 
-    Type getCombinationType() const { return combinationType; }
+    Type getCombinationType() const noexcept { return combinationType; }
 
-    bool operator<(const CardCombination& cc) const {
+    bool operator<(const CardCombination& cc) const noexcept {
         if (combinationType == cc.combinationType) {
             return sumOfCards < cc.sumOfCards;
         }
         return combinationType < cc.combinationType;
     }
 
-    bool operator==(const CardCombination& cc) const { return (combinationType == cc.combinationType) && (sumOfCards == cc.sumOfCards); }
+    bool operator==(const CardCombination& cc) const noexcept { return (combinationType == cc.combinationType) && (sumOfCards == cc.sumOfCards); }
 };
 
 } // namespace Combination
