@@ -9,12 +9,16 @@ bool Stone::tryPlayCardAs(const Agent::PlayerID& player, const Cards::ClanCard& 
         return false;
     }
 
-    const auto it = playerSides.find(player);
-    if (it == playerSides.end()) {
+    const auto side = playerSides.find(player);
+    if (side == playerSides.end()) {
         return false;
     }
 
-    return it->second.tryPlayCard(card);
+    if (side->second.tryPlayCard(card) && side->second.isComplete()) {
+        history.addCompletion(player);
+    }
+
+    return true;
 }
 
 bool Stone::canPlayerClaim(const Agent::PlayerID& player) const {
