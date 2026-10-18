@@ -12,6 +12,9 @@ namespace Combination {
 
 enum class Type { SUM = 100, SERIE = 200, COLOR = 300, KIND = 400, COLORED_SERIE = 500 };
 
+inline constexpr int SERIE_DIFF = 1;
+inline constexpr int MIN_COMBINATION_SIZE = 2;
+
 Type computeCombinationType(const std::vector<ClanCard>& cards);
 
 bool isSerie(std::vector<ClanCard> cards);
