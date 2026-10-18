@@ -8,5 +8,5 @@ target_link_libraries(CombinationTest
   PRIVATE
     GTest::gtest_main
     Combination
+    Card
 )
-

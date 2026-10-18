@@ -8,5 +8,6 @@ target_link_libraries(SideTest
   PRIVATE
     GTest::gtest_main
     Side
+    Card
 )
 
