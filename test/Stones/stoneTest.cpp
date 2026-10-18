@@ -40,3 +40,43 @@ TEST(StoneTest, isClaimedTrue) {
 
     EXPECT_TRUE(testStone.isClaimed());
 }
+
+TEST(StoneTest, tryPlayCardAs_Success) {
+    Stone::Stone testStone = getTestStone();
+    Agent::PlayerID player1("Player_1");
+
+    EXPECT_TRUE(testStone.tryPlayCardAs(player1, ClanCard::ClanCard()));
+}
+
+TEST(StoneTest, tryPlayCardAs_FailureFull) {
+    Stone::Stone testStone = getTestStone();
+    Agent::PlayerID player1("Player_1");
+
+    constexpr int defaultMaxSize = 3;
+    for (int i = 0; i < defaultMaxSize; i++) {
+        testStone.tryPlayCardAs(player1, ClanCard::ClanCard());
+    }
+    EXPECT_FALSE(testStone.tryPlayCardAs(player1, ClanCard::ClanCard()));
+}
+
+TEST(StoneTest, tryPlayCardAs_FailureClaimed) {
+    Stone::Stone testStone = getTestStone();
+    Agent::PlayerID player1("Player_1");
+    Agent::PlayerID player2("Player_2");
+
+    constexpr int defaultMaxSize = 3;
+    for (int i = 0; i < defaultMaxSize; i++) {
+        testStone.tryPlayCardAs(player1, ClanCard::ClanCard());
+        testStone.tryPlayCardAs(player2, ClanCard::ClanCard());
+    }
+    testStone.tryResolveStoneCombinationAs(player1);
+
+    EXPECT_FALSE(testStone.tryPlayCardAs(player1, ClanCard::ClanCard()));
+}
+
+TEST(StoneTest, tryPlayCardAs_FailureBqdInput) {
+    Stone::Stone testStone = getTestStone();
+    Agent::PlayerID player1;
+
+    EXPECT_FALSE(testStone.tryPlayCardAs(player1, ClanCard::ClanCard()));
+}
