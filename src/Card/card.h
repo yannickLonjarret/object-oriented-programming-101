@@ -17,7 +17,7 @@ class ClanCard : public Card {
     inline int getValue() const noexcept { return value; }
     inline CardColors getColor() const noexcept { return color; }
 
-    inline bool operator==(const ClanCard& c) const { return color == c.color && value == c.value; };
+    inline bool operator==(const ClanCard& c) const noexcept { return color == c.color && value == c.value; };
 };
 } // namespace Cards
 
