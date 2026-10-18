@@ -14,7 +14,7 @@ bool Stone::tryPlayCardAs(const Agent::PlayerID& player, const Cards::ClanCard& 
         return false;
     }
 
-    return it->second.try_playCard(card);
+    return it->second.tryPlayCard(card);
 }
 
 bool Stone::canPlayerClaim(const Agent::PlayerID& player) const {
