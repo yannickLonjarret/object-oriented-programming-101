@@ -1,15 +1,22 @@
-add_library(Combination)
+add_library(Stone)
 
-target_sources(Combination
+target_sources(Stone
     PRIVATE
-        combination.cpp
+        stone.cpp
     PUBLIC
         FILE_SET HEADERS
         FILES
-            combination.h
+            stone.h
 )
 
-target_link_libraries(Combination
-    PUBLIC
+target_link_libraries(Stone
+    PRIVATE
+        Combination
         Card
-)
+        CompletionOrder
+        Side
+        PlayerId)
+
+add_subdirectory(Combination)
+add_subdirectory(Side)
+add_subdirectory(CompletionOrder)

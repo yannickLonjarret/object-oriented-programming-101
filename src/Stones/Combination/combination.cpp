@@ -1,6 +1,9 @@
 #include "combination.h"
+#include "card.h"
 
 #include <algorithm>
+#include <iterator>
+#include <vector>
 
 namespace Combination {
 Type computeCombinationType(const std::vector<ClanCard>& cards) {
@@ -18,13 +21,13 @@ Type computeCombinationType(const std::vector<ClanCard>& cards) {
 }
 
 bool isSerie(std::vector<ClanCard> cards) {
-    if (cards.empty() || cards.size() == 1) {
+    if (cards.empty() || cards.size() < MIN_COMBINATION_SIZE) {
         return false;
     }
 
     std::sort(cards.begin(), cards.end(), [](const ClanCard& c1, const ClanCard& c2) { return c1.getValue() < c2.getValue(); });
     for (auto it = std::next(cards.cbegin()); it != cards.cend(); ++it) {
-        if (it->getValue() - std::prev(it)->getValue() != 1) {
+        if (it->getValue() - std::prev(it)->getValue() != SERIE_DIFF) {
             return false;
         }
     }
@@ -33,7 +36,7 @@ bool isSerie(std::vector<ClanCard> cards) {
 }
 
 bool isColor(const std::vector<ClanCard>& cards) {
-    if (cards.empty() || cards.size() == 1) {
+    if (cards.empty() || cards.size() < MIN_COMBINATION_SIZE) {
         return false;
     }
     const Cards::CardColors referenceColor = cards.front().getColor();
@@ -42,7 +45,7 @@ bool isColor(const std::vector<ClanCard>& cards) {
 }
 
 bool isKind(const std::vector<ClanCard>& cards) {
-    if (cards.empty() || cards.size() == 1) {
+    if (cards.empty() || cards.size() < MIN_COMBINATION_SIZE) {
         return false;
     }
     const int referenceValue = cards.front().getValue();

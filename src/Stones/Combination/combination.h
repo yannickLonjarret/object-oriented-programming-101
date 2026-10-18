@@ -12,6 +12,9 @@ namespace Combination {
 
 enum class Type { SUM = 100, SERIE = 200, COLOR = 300, KIND = 400, COLORED_SERIE = 500 };
 
+inline constexpr int SERIE_DIFF = 1;
+inline constexpr int MIN_COMBINATION_SIZE = 2;
+
 Type computeCombinationType(const std::vector<ClanCard>& cards);
 
 bool isSerie(std::vector<ClanCard> cards);
@@ -25,23 +28,23 @@ class CardCombination {
     int sumOfCards;
 
   public:
-    CardCombination(Type type, int sum) : combinationType(type), sumOfCards(sum) {};
+    CardCombination(Type type = Type::SUM, int sum = 0) : combinationType(type), sumOfCards(sum) {};
 
     CardCombination(const std::vector<ClanCard>& cards) {
         combinationType = computeCombinationType(cards);
         sumOfCards = std::accumulate(cards.begin(), cards.end(), 0, [](int sum, const ClanCard& c) { return sum + c.getValue(); });
     }
 
-    Type getCombinationType() const { return combinationType; }
+    Type getCombinationType() const noexcept { return combinationType; }
 
-    bool operator<(const CardCombination& cc) const {
+    bool operator<(const CardCombination& cc) const noexcept {
         if (combinationType == cc.combinationType) {
             return sumOfCards < cc.sumOfCards;
         }
         return combinationType < cc.combinationType;
     }
 
-    bool operator==(const CardCombination& cc) const { return (combinationType == cc.combinationType) && (sumOfCards == cc.sumOfCards); }
+    bool operator==(const CardCombination& cc) const noexcept { return (combinationType == cc.combinationType) && (sumOfCards == cc.sumOfCards); }
 };
 
 } // namespace Combination
