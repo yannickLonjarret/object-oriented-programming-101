@@ -2,7 +2,7 @@
 
 namespace Stone {
 
-bool Side::try_playCard(const Cards::ClanCard& cardToPlay) {
+bool Side::tryPlayCard(const Cards::ClanCard& cardToPlay) {
     if (isComplete()) {
         return false;
     }
