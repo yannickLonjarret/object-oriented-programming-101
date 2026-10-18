@@ -14,6 +14,10 @@ bool Stone::tryPlayCardAs(const Agent::PlayerID& player, const Cards::ClanCard& 
         return false;
     }
 
+    if (side->second.isComplete()) {
+        return false;
+    }
+
     if (side->second.tryPlayCard(card) && side->second.isComplete()) {
         history.addCompletion(player);
     }
