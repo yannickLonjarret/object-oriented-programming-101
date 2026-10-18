@@ -1,0 +1,42 @@
+#include <gtest/gtest.h>
+
+#include "stone.h"
+
+Stone::Stone getTestStone() {
+    using namespace Combination;
+    std::vector<Agent::PlayerID> players = {Agent::PlayerID("Player_1"), Agent::PlayerID("Player_2")};
+    std::vector<Combination::Type> winConditions = {Type::COLOR, Type::COLORED_SERIE, Type::KIND, Type::SERIE, Type::SUM};
+
+    return Stone::Stone(players, winConditions);
+}
+
+TEST(StoneTest, isClaimedFalse) {
+    Stone::Stone testStone = getTestStone();
+    Agent::PlayerID player1("Player_1");
+    Agent::PlayerID player2("Player_2");
+
+    EXPECT_FALSE(testStone.isClaimed());
+
+    constexpr int defaultMaxSize = 3;
+    for (int i = 0; i < defaultMaxSize; i++) {
+        testStone.tryPlayCardAs(player1, ClanCard::ClanCard());
+        testStone.tryPlayCardAs(player2, ClanCard::ClanCard());
+    }
+
+    EXPECT_FALSE(testStone.isClaimed());
+}
+
+TEST(StoneTest, isClaimedTrue) {
+    Stone::Stone testStone = getTestStone();
+    Agent::PlayerID player1("Player_1");
+    Agent::PlayerID player2("Player_2");
+
+    constexpr int defaultMaxSize = 3;
+    for (int i = 0; i < defaultMaxSize; i++) {
+        testStone.tryPlayCardAs(player1, ClanCard::ClanCard());
+        testStone.tryPlayCardAs(player2, ClanCard::ClanCard());
+    }
+    testStone.tryResolveStoneCombinationAs(player1);
+
+    EXPECT_TRUE(testStone.isClaimed());
+}
