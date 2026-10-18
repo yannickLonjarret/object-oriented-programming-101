@@ -10,6 +10,6 @@ target_sources(Side
 )
 
 target_link_libraries(Side
-    PUBLIC
+    PRIVATE
         Card
 )

@@ -5,7 +5,7 @@ target_sources(SideTest
     sideTest.cpp)
 
 target_link_libraries(SideTest
-  PUBLIC
+  PRIVATE
     GTest::gtest_main
     Side
 )

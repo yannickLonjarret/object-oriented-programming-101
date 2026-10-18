@@ -5,7 +5,7 @@ target_sources(CompletionOrderTest
     completionOrderTest.cpp)
 
 target_link_libraries(CompletionOrderTest
-  PUBLIC
+  PRIVATE
     GTest::gtest_main
     CompletionOrder
     PlayerId

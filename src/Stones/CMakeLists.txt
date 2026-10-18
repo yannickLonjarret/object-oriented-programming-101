@@ -12,6 +12,7 @@ target_sources(Stone
 target_link_libraries(Stone
     PRIVATE
         Combination
+        Card
         CompletionOrder
         Side
         PlayerId)

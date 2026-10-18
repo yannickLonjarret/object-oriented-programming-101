@@ -10,6 +10,6 @@ target_sources(Combination
 )
 
 target_link_libraries(Combination
-    PUBLIC
+    PRIVATE
         Card
 )

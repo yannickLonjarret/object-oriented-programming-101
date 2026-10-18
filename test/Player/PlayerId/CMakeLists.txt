@@ -5,7 +5,7 @@ target_sources(PlayerIdTest
     playerIdTest.cpp)
 
 target_link_libraries(PlayerIdTest
-  PUBLIC
+  PRIVATE
     GTest::gtest_main
     PlayerId
 )

@@ -5,8 +5,9 @@ target_sources(CombinationTest
     combinationTest.cpp)
 
 target_link_libraries(CombinationTest
-  PUBLIC
+  PRIVATE
     GTest::gtest_main
     Combination
+    Card
 )
 
