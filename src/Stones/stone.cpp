@@ -31,6 +31,11 @@ bool Stone::canPlayerClaim(const Agent::PlayerID& player) const {
     if (it == playerSides.cend()) [[unlikely]] {
         return false;
     }
+
+    if (claimedBy.has_value()) {
+        return false;
+    }
+
     return it->second.isComplete();
 }
 
