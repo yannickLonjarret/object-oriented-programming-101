@@ -22,6 +22,7 @@ target_link_libraries(
   CombinationTest
   PlayerIdTest
   SideTest
+  StoneTest
   CompletionOrderTest
   CombinationTest
   
@@ -33,6 +34,7 @@ gtest_discover_tests(
   CombinationTest
   PlayerIdTest
   SideTest
+  StoneTest
   CompletionOrderTest
   CombinationTest
 )

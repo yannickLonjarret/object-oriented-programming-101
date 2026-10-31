@@ -4,17 +4,31 @@ using namespace Combination;
 
 namespace Stone {
 
+Agent::PlayerID Stone::getWinner() const noexcept { return claimedBy.value_or(Agent::PlayerID()); }
+
 bool Stone::tryPlayCardAs(const Agent::PlayerID& player, const Cards::ClanCard& card) {
     if (isClaimed()) {
         return false;
     }
 
-    const auto it = playerSides.find(player);
-    if (it == playerSides.end()) {
+    const auto& side = playerSides.find(player);
+    if (side == playerSides.end()) {
         return false;
     }
 
-    return it->second.tryPlayCard(card);
+    if (side->second.isComplete()) {
+        return false;
+    }
+
+    if (!side->second.tryPlayCard(card)) {
+        return false;
+    }
+
+    if (side->second.isComplete()) {
+        history.addCompletion(player);
+    }
+
+    return true;
 }
 
 bool Stone::canPlayerClaim(const Agent::PlayerID& player) const {
@@ -23,6 +37,11 @@ bool Stone::canPlayerClaim(const Agent::PlayerID& player) const {
     if (it == playerSides.cend()) [[unlikely]] {
         return false;
     }
+
+    if (isClaimed()) {
+        return false;
+    }
+
     return it->second.isComplete();
 }
 
