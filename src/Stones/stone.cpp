@@ -4,7 +4,7 @@ using namespace Combination;
 
 namespace Stone {
 
-Agent::PlayerID Stone::getWinner() const { return claimedBy.value_or(Agent::PlayerID()); }
+Agent::PlayerID Stone::getWinner() const noexcept { return claimedBy.value_or(Agent::PlayerID()); }
 
 bool Stone::tryPlayCardAs(const Agent::PlayerID& player, const Cards::ClanCard& card) {
     if (isClaimed()) {
