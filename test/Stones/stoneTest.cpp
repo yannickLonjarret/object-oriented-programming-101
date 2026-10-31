@@ -10,6 +10,8 @@ Stone::Stone getTestStone() {
     return Stone::Stone(players, winConditions);
 }
 
+Cards::ClanCard getDefaultClanCard() { return Cards::ClanCard(); }
+
 TEST(StoneTest, isClaimed_False) {
     Stone::Stone testStone = getTestStone();
     Agent::PlayerID player1("Player_1");
@@ -19,8 +21,8 @@ TEST(StoneTest, isClaimed_False) {
 
     constexpr int defaultMaxSize = 3;
     for (int i = 0; i < defaultMaxSize; i++) {
-        testStone.tryPlayCardAs(player1, ClanCard::ClanCard());
-        testStone.tryPlayCardAs(player2, ClanCard::ClanCard());
+        testStone.tryPlayCardAs(player1, getDefaultClanCard());
+        testStone.tryPlayCardAs(player2, getDefaultClanCard());
     }
 
     EXPECT_FALSE(testStone.isClaimed());
@@ -33,8 +35,8 @@ TEST(StoneTest, isClaimed_True) {
 
     constexpr int defaultMaxSize = 3;
     for (int i = 0; i < defaultMaxSize; i++) {
-        testStone.tryPlayCardAs(player1, ClanCard::ClanCard());
-        testStone.tryPlayCardAs(player2, ClanCard::ClanCard());
+        testStone.tryPlayCardAs(player1, getDefaultClanCard());
+        testStone.tryPlayCardAs(player2, getDefaultClanCard());
     }
     testStone.tryResolveStoneCombinationAs(player1);
 
@@ -45,7 +47,7 @@ TEST(StoneTest, tryPlayCardAs_Success) {
     Stone::Stone testStone = getTestStone();
     Agent::PlayerID player1("Player_1");
 
-    EXPECT_TRUE(testStone.tryPlayCardAs(player1, ClanCard::ClanCard()));
+    EXPECT_TRUE(testStone.tryPlayCardAs(player1, getDefaultClanCard()));
 }
 
 TEST(StoneTest, tryPlayCardAs_FailureFull) {
@@ -54,9 +56,9 @@ TEST(StoneTest, tryPlayCardAs_FailureFull) {
 
     constexpr int defaultMaxSize = 3;
     for (int i = 0; i < defaultMaxSize; i++) {
-        testStone.tryPlayCardAs(player1, ClanCard::ClanCard());
+        testStone.tryPlayCardAs(player1, getDefaultClanCard());
     }
-    EXPECT_FALSE(testStone.tryPlayCardAs(player1, ClanCard::ClanCard()));
+    EXPECT_FALSE(testStone.tryPlayCardAs(player1, getDefaultClanCard()));
 }
 
 TEST(StoneTest, tryPlayCardAs_FailureClaimed) {
@@ -66,12 +68,12 @@ TEST(StoneTest, tryPlayCardAs_FailureClaimed) {
 
     constexpr int defaultMaxSize = 3;
     for (int i = 0; i < defaultMaxSize; i++) {
-        testStone.tryPlayCardAs(player1, ClanCard::ClanCard());
-        testStone.tryPlayCardAs(player2, ClanCard::ClanCard());
+        testStone.tryPlayCardAs(player1, getDefaultClanCard());
+        testStone.tryPlayCardAs(player2, getDefaultClanCard());
     }
     testStone.tryResolveStoneCombinationAs(player1);
 
-    EXPECT_FALSE(testStone.tryPlayCardAs(player1, ClanCard::ClanCard()));
+    EXPECT_FALSE(testStone.tryPlayCardAs(player1, getDefaultClanCard()));
 }
 
 TEST(StoneTest, canPlayerClaim_Success) {
@@ -80,7 +82,7 @@ TEST(StoneTest, canPlayerClaim_Success) {
 
     constexpr int defaultMaxSize = 3;
     for (int i = 0; i < defaultMaxSize; i++) {
-        testStone.tryPlayCardAs(player1, ClanCard::ClanCard());
+        testStone.tryPlayCardAs(player1, getDefaultClanCard());
     }
 
     EXPECT_TRUE(testStone.canPlayerClaim(player1));
@@ -100,8 +102,8 @@ TEST(StoneTest, canPlayerClaim_FailureAlreadyClaimed) {
 
     constexpr int defaultMaxSize = 3;
     for (int i = 0; i < defaultMaxSize; i++) {
-        testStone.tryPlayCardAs(player1, ClanCard::ClanCard());
-        testStone.tryPlayCardAs(player2, ClanCard::ClanCard());
+        testStone.tryPlayCardAs(player1, getDefaultClanCard());
+        testStone.tryPlayCardAs(player2, getDefaultClanCard());
     }
     testStone.tryResolveStoneCombinationAs(player1);
 
@@ -155,8 +157,8 @@ TEST(StoneTest, tryResolveStoneCombinationAs_Player1Win_TieBreak) {
 
     constexpr int defaultMaxSize = 3;
     for (int i = 0; i < defaultMaxSize; i++) {
-        testStone.tryPlayCardAs(player1, ClanCard::ClanCard());
-        testStone.tryPlayCardAs(player2, ClanCard::ClanCard());
+        testStone.tryPlayCardAs(player1, getDefaultClanCard());
+        testStone.tryPlayCardAs(player2, getDefaultClanCard());
     }
 
     EXPECT_TRUE(testStone.tryResolveStoneCombinationAs(player1));
@@ -170,8 +172,8 @@ TEST(StoneTest, tryResolveStoneCombinationAs_Player2Win_TieBreak) {
 
     constexpr int defaultMaxSize = 3;
     for (int i = 0; i < defaultMaxSize; i++) {
-        testStone.tryPlayCardAs(player2, ClanCard::ClanCard());
-        testStone.tryPlayCardAs(player1, ClanCard::ClanCard());
+        testStone.tryPlayCardAs(player2, getDefaultClanCard());
+        testStone.tryPlayCardAs(player1, getDefaultClanCard());
     }
 
     EXPECT_TRUE(testStone.tryResolveStoneCombinationAs(player2));
@@ -185,7 +187,7 @@ TEST(StoneTest, tryResolveStoneCombinationAs_IncompleteHand) {
 
     constexpr int defaultMaxSize = 3;
     for (int i = 0; i < defaultMaxSize; i++) {
-        testStone.tryPlayCardAs(player2, ClanCard::ClanCard());
+        testStone.tryPlayCardAs(player2, getDefaultClanCard());
     }
 
     EXPECT_FALSE(testStone.tryResolveStoneCombinationAs(player1));
@@ -198,7 +200,7 @@ TEST(StoneTest, tryResolveStoneCombinationAs_IncompleteOpponenHand) {
 
     constexpr int defaultMaxSize = 3;
     for (int i = 0; i < defaultMaxSize; i++) {
-        testStone.tryPlayCardAs(player1, ClanCard::ClanCard());
+        testStone.tryPlayCardAs(player1, getDefaultClanCard());
     }
 
     EXPECT_FALSE(testStone.tryResolveStoneCombinationAs(player1));
