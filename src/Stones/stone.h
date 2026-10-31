@@ -33,7 +33,7 @@ class Stone {
 
     inline bool isClaimed() const noexcept { return claimedBy.has_value(); }
 
-    Agent::PlayerID getWinner() const;
+    Agent::PlayerID getWinner() const noexcept;
 
     bool canPlayerClaim(const Agent::PlayerID& player) const;
 
