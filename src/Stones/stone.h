@@ -33,6 +33,8 @@ class Stone {
 
     inline bool isClaimed() const noexcept { return claimedBy.has_value(); }
 
+    Agent::PlayerID getWinner() const;
+
     bool canPlayerClaim(const Agent::PlayerID& player) const;
 
     bool tryResolveStoneCombinationAs(const Agent::PlayerID& player);
