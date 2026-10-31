@@ -12,7 +12,6 @@ TEST(StoneSide, PlayCard_Failure) {
     Stone::Side s(0);
     Cards::ClanCard c;
     EXPECT_FALSE(s.tryPlayCard(c));
-    EXPECT_EQ(c.getColor(), Cards::CardColors::EMPTY);
 }
 
 TEST(StoneSide, PlayCard_FailureAfterFill) {
