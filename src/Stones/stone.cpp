@@ -78,6 +78,33 @@ bool Stone::tryResolveStoneCombinationAs(const Agent::PlayerID& player) {
     return true;
 }
 
+bool Stone::tryClaimStoneByProofAs(const Agent::PlayerID& player, const std::vector<Cards::ClanCard>& possibleCards) {
+    if (!canPlayerClaim(player)) {
+        return false;
+    }
+
+    std::vector<Side> opponents;
+    for (const auto& [id, otherSide] : playerSides) {
+        if (player == id) {
+            continue;
+        }
+        opponents.push_back(otherSide);
+    }
+
+    const Side& side = playerSides.at(player);
+    CardCombination contender(side.getPlayedCards());
+
+    std::vector<CardCombination> possibilities = combinationAllOpponents(opponents, possibleCards);
+    for (const auto& combo : possibilities) {
+        if (contender < combo) {
+            return false;
+        }
+    }
+
+    claimedBy = player;
+    return true;
+}
+
 std::vector<CardCombination> Stone::combinationAllOpponents(const std::vector<Side>& allOpponents,
                                                             const std::vector<Cards::ClanCard>& possibleCards) const {
     std::vector<CardCombination> result;
