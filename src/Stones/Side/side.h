@@ -10,13 +10,15 @@
 namespace Stone {
 class Side {
   private:
-    size_t maxPlayableCardCount;
+    int maxPlayableCardCount;
     std::vector<Cards::ClanCard> playedCards;
 
   public:
-    Side(size_t max = 3) : maxPlayableCardCount(max) { playedCards.reserve(maxPlayableCardCount); }
+    Side(int max = 3) : maxPlayableCardCount(max) { playedCards.reserve(maxPlayableCardCount); }
 
     inline const std::vector<Cards::ClanCard>& getPlayedCards() const noexcept { return playedCards; }
+
+    inline const int getRemainingSize() const noexcept { return maxPlayableCardCount - static_cast<int>(playedCards.size()); }
 
     inline bool isComplete() const noexcept { return playedCards.size() >= maxPlayableCardCount; }
 
