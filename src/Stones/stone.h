@@ -40,6 +40,9 @@ class Stone {
     bool tryResolveStoneCombinationAs(const Agent::PlayerID& player);
 
     bool tryClaimStoneByProofAs(const Agent::PlayerID& player, const std::vector<Cards::ClanCard>& possibleCards);
+
+
+    std::vector<std::vector<int>> Stone::cardIndexCombinationGeneration(const int combinationSize, const int maxIndex);
 };
 } // namespace Stone
 

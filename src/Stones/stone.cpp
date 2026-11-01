@@ -78,4 +78,37 @@ bool Stone::tryResolveStoneCombinationAs(const Agent::PlayerID& player) {
     return true;
 }
 
+
+std::vector<std::vector<int>> Stone::cardIndexCombinationGeneration(const int combinationSize, const int maxIndex) {
+    if (combinationSize > maxIndex) {
+        return {};
+    }
+    std::vector<std::vector<int>> results;
+    std::vector<int> combo;
+    combo.reserve(combinationSize);
+    for (int i = 0; i < combinationSize; i++) {
+        combo.push_back(i);
+    }
+
+    while (true) {
+        results.push_back(combo);
+        int i = combinationSize - 1;
+
+        while (i >= 0 && combo.at(i) == maxIndex - combinationSize + i) {
+            i--;
+        }
+
+        if (i < 0) {
+            break;
+        }
+
+        combo.at(i)++;
+
+        for (int j = i + 1; j < combinationSize; j++) {
+            combo.at(j) = combo.at(j - 1) + 1;
+        }
+    }
+
+    return results;
+}
 } // namespace Stone
