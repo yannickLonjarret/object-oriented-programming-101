@@ -12,6 +12,7 @@
 #include "side.h"
 
 namespace Stone {
+using namespace Combination;
 
 class Stone {
   private:
@@ -23,7 +24,7 @@ class Stone {
   public:
     Stone() {};
 
-    Stone(const std::vector<Agent::PlayerID>& players, const std::vector<Combination::Type>& combinations) : eligibleCombinations(combinations) {
+    Stone(const std::vector<Agent::PlayerID>& players, const std::vector<Type>& combinations) : eligibleCombinations(combinations) {
         for (const auto& p : players) {
             playerSides.try_emplace(p);
         }
@@ -41,8 +42,13 @@ class Stone {
 
     bool tryClaimStoneByProofAs(const Agent::PlayerID& player, const std::vector<Cards::ClanCard>& possibleCards);
 
+  private:
+    std::vector<CardCombination> combinationAllOpponents(const std::vector<Side>& allOpponents,
+                                                         const std::vector<Cards::ClanCard>& possibleCards) const;
 
-    std::vector<std::vector<int>> Stone::cardIndexCombinationGeneration(const int combinationSize, const int maxIndex);
+    std::vector<CardCombination> combinationSingleOpponent(const Side& opponent, const std::vector<Cards::ClanCard>& possibleCards) const;
+
+    std::vector<std::vector<int>> cardIndexCombinationGeneration(const int combinationSize, const int maxIndex) const;
 };
 } // namespace Stone
 

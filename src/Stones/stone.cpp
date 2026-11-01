@@ -78,8 +78,34 @@ bool Stone::tryResolveStoneCombinationAs(const Agent::PlayerID& player) {
     return true;
 }
 
+std::vector<CardCombination> Stone::combinationAllOpponents(const std::vector<Side>& allOpponents,
+                                                            const std::vector<Cards::ClanCard>& possibleCards) const {
+    std::vector<CardCombination> result;
 
-std::vector<std::vector<int>> Stone::cardIndexCombinationGeneration(const int combinationSize, const int maxIndex) {
+    for (const auto& side : allOpponents) {
+        std::vector<CardCombination> temp = combinationSingleOpponent(side, possibleCards);
+        result.insert(result.cend(), temp.cbegin(), temp.cend());
+    }
+
+    return result;
+}
+
+std::vector<CardCombination> Stone::combinationSingleOpponent(const Side& opponent, const std::vector<Cards::ClanCard>& possibleCards) const {
+    const int maxIndex = static_cast<int>(possibleCards.size());
+    std::vector<std::vector<int>> possibleIndex = cardIndexCombinationGeneration(opponent.getRemainingSize(), maxIndex);
+    std::vector<CardCombination> combo;
+    for (const auto& vec : possibleIndex) {
+        std::vector<Cards::ClanCard> playedCards(opponent.getPlayedCards());
+        for (const auto& i : vec) {
+            playedCards.push_back(possibleCards.at(i));
+        }
+        combo.push_back(playedCards);
+    }
+
+    return combo;
+}
+
+std::vector<std::vector<int>> Stone::cardIndexCombinationGeneration(const int combinationSize, const int maxIndex) const {
     if (combinationSize > maxIndex) {
         return {};
     }
