@@ -150,6 +150,40 @@ TEST(StoneTest, tryResolveStoneCombinationAs_Player2Win) {
     EXPECT_EQ(testStone.getWinner(), player2);
 }
 
+TEST(StoneTest, tryResolveStoneCombinationAs_Player1Win_TieBreakSumDiff) {
+    Stone::Stone testStone = getTestStone();
+    Agent::PlayerID player1("Player_1");
+    Agent::PlayerID player2("Player_2");
+
+    testStone.tryPlayCardAs(player1, (ClanCard(2, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player1, (ClanCard(3, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player1, (ClanCard(4, CardColors::BLUE)));
+
+    testStone.tryPlayCardAs(player2, (ClanCard(1, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player2, (ClanCard(2, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player2, (ClanCard(3, CardColors::BLUE)));
+
+    EXPECT_TRUE(testStone.tryResolveStoneCombinationAs(player1));
+    EXPECT_EQ(testStone.getWinner(), player1);
+}
+
+TEST(StoneTest, tryResolveStoneCombinationAs_Player2Win_TieBreakSumDiff) {
+    Stone::Stone testStone = getTestStone();
+    Agent::PlayerID player1("Player_1");
+    Agent::PlayerID player2("Player_2");
+
+    testStone.tryPlayCardAs(player2, (ClanCard(2, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player2, (ClanCard(3, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player2, (ClanCard(4, CardColors::BLUE)));
+
+    testStone.tryPlayCardAs(player1, (ClanCard(1, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player1, (ClanCard(2, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player1, (ClanCard(3, CardColors::BLUE)));
+
+    EXPECT_TRUE(testStone.tryResolveStoneCombinationAs(player2));
+    EXPECT_EQ(testStone.getWinner(), player2);
+}
+
 TEST(StoneTest, tryResolveStoneCombinationAs_Player1Win_TieBreak) {
     Stone::Stone testStone = getTestStone();
     Agent::PlayerID player1("Player_1");
