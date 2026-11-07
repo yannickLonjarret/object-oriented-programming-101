@@ -37,8 +37,11 @@ gtest_discover_tests(
   StoneTest
   CompletionOrderTest
   CombinationTest
+
+  UtilsMathTest
 )
 
 # Subdirectories:
 add_subdirectory(Stones)
 add_subdirectory(Player)
+add_subdirectory(utils)
