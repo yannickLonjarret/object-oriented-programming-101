@@ -24,7 +24,7 @@ std::vector<std::vector<unsigned int>> k_combination(const unsigned int n, const
         return {};
     }
     std::vector<std::vector<unsigned int>> results;
-    results.reserve(24808);
+    results.reserve(binomialCoeff(n, k));
 
     std::vector<unsigned int> combo(k);
     std::iota(combo.begin(), combo.end(), 0);
