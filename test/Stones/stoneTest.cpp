@@ -10,6 +10,22 @@ Stone::Stone getTestStone() {
     return Stone::Stone(players, winConditions);
 }
 
+std::vector<ClanCard> getAllCards() {
+    std::vector<ClanCard> cards;
+    constexpr int max_card_count = 54;
+    cards.reserve(max_card_count);
+
+    for (int i = 1; i < 10; i++) {
+        cards.push_back({i, CardColors::GREEN});
+        cards.push_back({i, CardColors::BLUE});
+        cards.push_back({i, CardColors::RED});
+        cards.push_back({i, CardColors::YELLOW});
+        cards.push_back({i, CardColors::PURPLE});
+        cards.push_back({i, CardColors::BROWN});
+    }
+    return cards;
+}
+
 Cards::ClanCard getDefaultClanCard() { return Cards::ClanCard(); }
 
 TEST(StoneTest, isClaimed_False) {
@@ -246,5 +262,82 @@ TEST(StoneTest, tryResolveStoneCombinationAs_UnknownPlayer) {
     Agent::PlayerID badPlayer("RandomInput");
 
     EXPECT_FALSE(testStone.tryResolveStoneCombinationAs(badPlayer));
+    EXPECT_EQ(testStone.getWinner(), Agent::PlayerID());
+}
+
+TEST(StoneTest, tryClaimStoneByProofAs_Win) {
+    Stone::Stone testStone = getTestStone();
+    Agent::PlayerID player1("Player_1");
+    Agent::PlayerID player2("Player_2");
+
+    testStone.tryPlayCardAs(player1, (ClanCard(7, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player1, (ClanCard(8, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player1, (ClanCard(9, CardColors::BLUE)));
+
+    testStone.tryPlayCardAs(player2, (ClanCard(1, CardColors::RED)));
+    testStone.tryPlayCardAs(player2, (ClanCard(5, CardColors::BLUE)));
+
+    EXPECT_TRUE(testStone.tryClaimStoneByProofAs(player1, getAllCards()));
+    EXPECT_EQ(testStone.getWinner(), player1);
+}
+
+TEST(StoneTest, tryClaimStoneByProofAs_WinPossibleTie) {
+    Stone::Stone testStone = getTestStone();
+    Agent::PlayerID player1("Player_1");
+    Agent::PlayerID player2("Player_2");
+
+    testStone.tryPlayCardAs(player1, (ClanCard(7, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player1, (ClanCard(8, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player1, (ClanCard(9, CardColors::BLUE)));
+
+    testStone.tryPlayCardAs(player2, (ClanCard(7, CardColors::RED)));
+    testStone.tryPlayCardAs(player2, (ClanCard(8, CardColors::RED)));
+
+    EXPECT_TRUE(testStone.tryClaimStoneByProofAs(player1, getAllCards()));
+    EXPECT_EQ(testStone.getWinner(), player1);
+}
+
+TEST(StoneTest, tryClaimStoneByProofAs_Lose) {
+    Stone::Stone testStone = getTestStone();
+    Agent::PlayerID player1("Player_1");
+
+    testStone.tryPlayCardAs(player1, (ClanCard(1, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player1, (ClanCard(5, CardColors::RED)));
+    testStone.tryPlayCardAs(player1, (ClanCard(3, CardColors::GREEN)));
+
+    EXPECT_FALSE(testStone.tryClaimStoneByProofAs(player1, getAllCards()));
+    EXPECT_EQ(testStone.getWinner(), Agent::PlayerID());
+}
+
+TEST(StoneTest, tryClaimStoneByProofAs_NoPlayableCard) {
+    Stone::Stone testStone = getTestStone();
+    Agent::PlayerID player1("Player_1");
+
+    testStone.tryPlayCardAs(player1, (ClanCard(1, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player1, (ClanCard(2, CardColors::BLUE)));
+    testStone.tryPlayCardAs(player1, (ClanCard(3, CardColors::BLUE)));
+
+    EXPECT_TRUE(testStone.tryClaimStoneByProofAs(player1, {}));
+    EXPECT_EQ(testStone.getWinner(), player1);
+}
+
+TEST(StoneTest, tryClaimStoneByProofAs_IncompleteHand) {
+    Stone::Stone testStone = getTestStone();
+    Agent::PlayerID player1("Player_1");
+
+    constexpr int defaultMaxSize = 3;
+    for (int i = 0; i < defaultMaxSize; i++) {
+        testStone.tryPlayCardAs(player1, getDefaultClanCard());
+    }
+
+    EXPECT_FALSE(testStone.tryClaimStoneByProofAs(player1, getAllCards()));
+    EXPECT_EQ(testStone.getWinner(), Agent::PlayerID());
+}
+
+TEST(StoneTest, tryClaimStoneByProofAs_UnknownPlayer) {
+    Stone::Stone testStone = getTestStone();
+    Agent::PlayerID badPlayer("RandomInput");
+
+    EXPECT_FALSE(testStone.tryClaimStoneByProofAs(badPlayer, getAllCards()));
     EXPECT_EQ(testStone.getWinner(), Agent::PlayerID());
 }
