@@ -15,7 +15,8 @@ target_link_libraries(Stone
         Card
         CompletionOrder
         Side
-        PlayerId)
+        PlayerId
+        Utilities)
 
 add_subdirectory(Combination)
 add_subdirectory(Side)
