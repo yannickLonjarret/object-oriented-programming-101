@@ -25,7 +25,7 @@ target_link_libraries(
   StoneTest
   CompletionOrderTest
   CombinationTest
-  
+  UtilsMathTest
 )
 
 include(GoogleTest)

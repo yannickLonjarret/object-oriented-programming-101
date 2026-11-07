@@ -7,5 +7,6 @@ target_sources(UtilsMathTest
 target_link_libraries(UtilsMathTest
   PRIVATE
     GTest::gtest_main
-    UtilsMath
+  PUBLIC
+    Utilities
 )
