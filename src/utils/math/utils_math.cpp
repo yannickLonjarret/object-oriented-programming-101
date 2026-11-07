@@ -1,7 +1,7 @@
 #include "utils_math.h"
 #include <numeric>
 
-using namespace utils::math;
+namespace utils::math {
 
 int binomialCoeff(const unsigned int n, const unsigned int k) {
     if (k > n) {
@@ -11,9 +11,9 @@ int binomialCoeff(const unsigned int n, const unsigned int k) {
     if (k == 0 || k == n) {
         return 1;
     }
-    int coeff = 1;
+    unsigned int coeff = 1;
     for (unsigned int i = 1; i <= k; i++) {
-        coeff *= (n + 1 - i) / i;
+        coeff = coeff * (n + 1 - i) / i;
     }
 
     return coeff;
@@ -50,3 +50,4 @@ std::vector<std::vector<unsigned int>> k_combination(const unsigned int n, const
 
     return results;
 }
+} // namespace utils::math
