@@ -108,7 +108,8 @@ bool Stone::tryClaimStoneByProofAs(const Agent::PlayerID& player, const std::vec
 std::vector<CardCombination> Stone::combinationAllOpponents(const std::vector<Side>& allOpponents,
                                                             const std::vector<Cards::ClanCard>& possibleCards) const {
     std::vector<CardCombination> result;
-
+    const int comboUpperBound = allOpponents.size() * 24804; // Magic value is C_{54}^{3}
+    result.reserve(comboUpperBound);
     for (const auto& side : allOpponents) {
         std::vector<CardCombination> temp = combinationSingleOpponent(side, possibleCards);
         result.insert(result.cend(), temp.cbegin(), temp.cend());
@@ -119,7 +120,10 @@ std::vector<CardCombination> Stone::combinationAllOpponents(const std::vector<Si
 
 std::vector<CardCombination> Stone::combinationSingleOpponent(const Side& opponent, const std::vector<Cards::ClanCard>& possibleCards) const {
     const int maxIndex = static_cast<int>(possibleCards.size());
-    std::vector<std::vector<int>> possibleIndex = cardIndexCombinationGeneration(opponent.getRemainingSize(), maxIndex);
+    std::vector<std::vector<int>> possibleIndex;
+    possibleIndex.reserve(24808); // Magic value is C_{54}^{3}
+
+    possibleIndex = cardIndexCombinationGeneration(opponent.getRemainingSize(), maxIndex);
     std::vector<CardCombination> combo;
     for (const auto& vec : possibleIndex) {
         std::vector<Cards::ClanCard> playedCards(opponent.getPlayedCards());
@@ -137,6 +141,7 @@ std::vector<std::vector<int>> Stone::cardIndexCombinationGeneration(const int co
         return {};
     }
     std::vector<std::vector<int>> results;
+    results.reserve(24808);
     std::vector<int> combo;
     combo.reserve(combinationSize);
     for (int i = 0; i < combinationSize; i++) {
