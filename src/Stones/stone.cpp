@@ -84,16 +84,38 @@ bool Stone::tryClaimStoneByProofAs(const Agent::PlayerID& player, const std::vec
         return false;
     }
 
+    const Side& side = playerSides.at(player);
+    CardCombination contender(side.getPlayedCards());
+    for (const auto& [otherPlayer, otherSide] : playerSides) {
+        if (otherPlayer == player) {
+            continue;
+        }
+
+        if (!otherSide.isComplete()) {
+            continue;
+        }
+
+        CardCombination candidate(otherSide.getPlayedCards());
+        if (contender == candidate) [[unlikely]] {
+            if (otherPlayer == history.getEarliest(player, otherPlayer)) {
+                return false;
+            }
+        } else if (contender < candidate) {
+            return false;
+        }
+    }
+
     std::vector<Side> opponents;
     for (const auto& [id, otherSide] : playerSides) {
         if (player == id) {
             continue;
         }
+
+        if (otherSide.isComplete()) {
+            continue;
+        }
         opponents.push_back(otherSide);
     }
-
-    const Side& side = playerSides.at(player);
-    CardCombination contender(side.getPlayedCards());
 
     std::vector<CardCombination> possibilities = combinationAllOpponents(opponents, possibleCards);
     for (const auto& combo : possibilities) {
@@ -120,13 +142,16 @@ std::vector<CardCombination> Stone::combinationAllOpponents(const std::vector<Si
 }
 
 std::vector<CardCombination> Stone::combinationSingleOpponent(const Side& opponent, const std::vector<Cards::ClanCard>& possibleCards) const {
+    std::vector<CardCombination> combo;
+    if (opponent.isComplete()) {
+        return combo;
+    }
+
     const int maxIndex = static_cast<unsigned int>(possibleCards.size());
     std::vector<std::vector<unsigned int>> possibleIndex;
     possibleIndex.reserve(utils::math::binomialCoeff(54, 3));
-
     possibleIndex = utils::math::k_combination(maxIndex, opponent.getRemainingSize());
 
-    std::vector<CardCombination> combo;
     for (const auto& vec : possibleIndex) {
         std::vector<Cards::ClanCard> playedCards(opponent.getPlayedCards());
         for (const auto& i : vec) {
