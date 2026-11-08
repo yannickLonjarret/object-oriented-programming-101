@@ -18,7 +18,6 @@ target_sources(GameTest
 target_link_libraries(
   GameTest
   GTest::gtest_main
-  Utilities
   # Add future test here
   CombinationTest
   PlayerIdTest

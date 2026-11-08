@@ -42,6 +42,7 @@ jobs:
           name: SchottenTest
           path: |
             build/bin/GameTest
+            build/bin/*.so
 
   test:
       needs: build
