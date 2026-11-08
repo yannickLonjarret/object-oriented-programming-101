@@ -5,7 +5,7 @@ namespace utils::math {
 
 int binomialCoeff(const unsigned int n, const unsigned int k) {
     if (k > n) {
-        return -1;
+        return std::numeric_limits<int>::min();
     }
 
     if (k == 0 || k == n) {

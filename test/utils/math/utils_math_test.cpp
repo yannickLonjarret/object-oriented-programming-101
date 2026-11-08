@@ -8,7 +8,7 @@ TEST(UtilsMathTest, binomial_success) {
 
 TEST(UtilsMathTest, binomial_badInput) {
     const int result = utils::math::binomialCoeff(3, 54);
-    EXPECT_EQ(result, -1);
+    EXPECT_EQ(result, std::numeric_limits<int>::min());
 }
 
 TEST(UtilsMathTest, binomial_EdgeCases) {
