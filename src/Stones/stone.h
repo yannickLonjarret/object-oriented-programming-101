@@ -47,8 +47,6 @@ class Stone {
                                                          const std::vector<Cards::ClanCard>& possibleCards) const;
 
     std::vector<CardCombination> combinationSingleOpponent(const Side& opponent, const std::vector<Cards::ClanCard>& possibleCards) const;
-
-    std::vector<std::vector<int>> cardIndexCombinationGeneration(const int combinationSize, const int maxIndex) const;
 };
 } // namespace Stone
 

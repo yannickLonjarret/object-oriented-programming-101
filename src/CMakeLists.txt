@@ -12,3 +12,5 @@ add_subdirectory(Card)
 # add_subdirectory(Game)
 add_subdirectory(Player)
 add_subdirectory(Stones)
+
+add_subdirectory(utils)
