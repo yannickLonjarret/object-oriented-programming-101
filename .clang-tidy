@@ -7,7 +7,5 @@ Checks: >
   modernize-*,
   performance-*,
   portability-*,
-
   -modernize-use-trailing-return-type
-WarningsAsErrors: >
-  '*'
+WarningsAsErrors: '*'

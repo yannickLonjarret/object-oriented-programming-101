@@ -5,7 +5,7 @@
 
 namespace utils::math {
 
-int binomialCoeff(const unsigned int n, const unsigned int k);
+unsigned int binomialCoeff(const unsigned int n, const unsigned int k);
 
 std::vector<std::vector<unsigned int>> k_combination(const unsigned int n, const unsigned int k);
 

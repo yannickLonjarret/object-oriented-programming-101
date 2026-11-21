@@ -1,12 +1,14 @@
 #include "side.h"
 
+#include "card.h"
+
 namespace Stone {
 
 bool Side::tryPlayCard(const Cards::ClanCard& cardToPlay) {
     if (isComplete()) {
         return false;
     }
-    playedCards.push_back(cardToPlay);
+    playedCards.emplace_back(cardToPlay);
     return true;
 }
 

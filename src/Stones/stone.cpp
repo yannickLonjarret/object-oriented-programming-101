@@ -1,4 +1,11 @@
 #include "stone.h"
+
+#include <utility>
+#include <vector>
+
+#include "card.h"
+#include "combination.h"
+#include "playerId.h"
 #include "utils_math.h"
 
 using namespace Combination;
@@ -65,7 +72,7 @@ bool Stone::tryResolveStoneCombinationAs(const Agent::PlayerID& player) {
             continue;
         }
 
-        CardCombination candidate(otherSide.getPlayedCards());
+        const CardCombination candidate(otherSide.getPlayedCards());
         if (highestCombination == candidate) [[unlikely]] {
             winner = history.getEarliest(winner, otherPlayer);
         } else if (highestCombination < candidate) {
@@ -85,7 +92,7 @@ bool Stone::tryClaimStoneByProofAs(const Agent::PlayerID& player, const std::vec
     }
 
     const Side& side = playerSides.at(player);
-    CardCombination contender(side.getPlayedCards());
+    const CardCombination contender(side.getPlayedCards());
     for (const auto& [otherPlayer, otherSide] : playerSides) {
         if (otherPlayer == player) {
             continue;
@@ -95,7 +102,7 @@ bool Stone::tryClaimStoneByProofAs(const Agent::PlayerID& player, const std::vec
             continue;
         }
 
-        CardCombination candidate(otherSide.getPlayedCards());
+        const CardCombination candidate(otherSide.getPlayedCards());
         if (contender == candidate) [[unlikely]] {
             if (otherPlayer == history.getEarliest(player, otherPlayer)) {
                 return false;
@@ -117,7 +124,7 @@ bool Stone::tryClaimStoneByProofAs(const Agent::PlayerID& player, const std::vec
         opponents.push_back(otherSide);
     }
 
-    std::vector<CardCombination> possibilities = combinationAllOpponents(opponents, possibleCards);
+    const std::vector<CardCombination> possibilities = combinationAllOpponents(opponents, possibleCards);
     for (const auto& combo : possibilities) {
         if (contender < combo) {
             return false;
@@ -134,7 +141,7 @@ std::vector<CardCombination> Stone::combinationAllOpponents(const std::vector<Si
     const unsigned int comboUpperBound = allOpponents.size() * utils::math::binomialCoeff(54, 3);
     result.reserve(comboUpperBound);
     for (const auto& side : allOpponents) {
-        std::vector<CardCombination> temp = combinationSingleOpponent(side, possibleCards);
+        const std::vector<CardCombination> temp = combinationSingleOpponent(side, possibleCards);
         result.insert(result.cend(), temp.cbegin(), temp.cend());
     }
 
@@ -147,9 +154,11 @@ std::vector<CardCombination> Stone::combinationSingleOpponent(const Side& oppone
         return combo;
     }
 
-    const int maxIndex = static_cast<unsigned int>(possibleCards.size());
+    const auto maxIndex = static_cast<unsigned int>(possibleCards.size());
     std::vector<std::vector<unsigned int>> possibleIndex;
-    possibleIndex.reserve(utils::math::binomialCoeff(54, 3));
+    constexpr unsigned int maxCardsCount = 54;
+    constexpr unsigned int averageSideSize = 3;
+    possibleIndex.reserve(utils::math::binomialCoeff(maxCardsCount, averageSideSize));
     possibleIndex = utils::math::k_combination(maxIndex, opponent.getRemainingSize());
 
     for (const auto& vec : possibleIndex) {
@@ -157,7 +166,7 @@ std::vector<CardCombination> Stone::combinationSingleOpponent(const Side& oppone
         for (const auto& i : vec) {
             playedCards.push_back(possibleCards.at(i));
         }
-        combo.push_back(playedCards);
+        combo.emplace_back(std::move(playedCards));
     }
 
     return combo;
