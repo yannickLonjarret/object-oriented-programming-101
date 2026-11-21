@@ -1,4 +1,6 @@
 #include "utils_math.h"
+
+#include <limits>
 #include <numeric>
 
 namespace utils::math {
