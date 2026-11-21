@@ -8,7 +8,7 @@ bool Side::tryPlayCard(const Cards::ClanCard& cardToPlay) {
     if (isComplete()) {
         return false;
     }
-    playedCards.emplace_back(std::move(cardToPlay));
+    playedCards.emplace_back(cardToPlay);
     return true;
 }
 
