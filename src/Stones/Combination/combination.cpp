@@ -25,7 +25,7 @@ bool isSerie(std::vector<ClanCard> cards) {
         return false;
     }
 
-    std::sort(cards.begin(), cards.end(), [](const ClanCard& c1, const ClanCard& c2) { return c1.getValue() < c2.getValue(); });
+    std::ranges::sort(cards, [](const ClanCard& c1, const ClanCard& c2) { return c1.getValue() < c2.getValue(); });
     for (auto it = std::next(cards.cbegin()); it != cards.cend(); ++it) {
         if (it->getValue() - std::prev(it)->getValue() != SERIE_DIFF) {
             return false;
@@ -41,7 +41,7 @@ bool isColor(const std::vector<ClanCard>& cards) {
     }
     const Cards::CardColors referenceColor = cards.front().getColor();
     auto colorPredicate = [referenceColor](const ClanCard& c) { return c.getColor() == referenceColor; };
-    return std::all_of(cards.begin(), cards.end(), colorPredicate);
+    return std::ranges::all_of(cards, colorPredicate);
 }
 
 bool isKind(const std::vector<ClanCard>& cards) {
@@ -50,7 +50,7 @@ bool isKind(const std::vector<ClanCard>& cards) {
     }
     const int referenceValue = cards.front().getValue();
     auto kindPredicate = [referenceValue](const ClanCard& c) { return c.getValue() == referenceValue; };
-    return std::all_of(cards.begin(), cards.end(), kindPredicate);
+    return std::ranges::all_of(cards, kindPredicate);
 }
 
 bool isColoredSerie(const std::vector<ClanCard>& cards) { return isSerie(cards) && isColor(cards); }
