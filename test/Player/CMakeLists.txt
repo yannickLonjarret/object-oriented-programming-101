@@ -8,6 +8,8 @@ target_link_libraries(PlayerTest
   PRIVATE
     GTest::gtest_main
     Player
+    PlayerId
+    Card
 )
 
 add_subdirectory(PlayerId)

@@ -9,4 +9,10 @@ target_sources(Player
             player.h
 )
 
+target_link_libraries(Player
+    PRIVATE
+        PlayerId
+        Card
+)
+
 add_subdirectory(PlayerId)
