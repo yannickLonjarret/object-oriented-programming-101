@@ -1,5 +1,6 @@
 #include "stone.h"
 
+#include <utility>
 #include <vector>
 
 #include "card.h"
@@ -153,7 +154,7 @@ std::vector<CardCombination> Stone::combinationSingleOpponent(const Side& oppone
         return combo;
     }
 
-    const unsigned int maxIndex = static_cast<unsigned int>(possibleCards.size());
+    const auto maxIndex = static_cast<unsigned int>(possibleCards.size());
     std::vector<std::vector<unsigned int>> possibleIndex;
     constexpr unsigned int maxCardsCount = 54;
     constexpr unsigned int averageSideSize = 3;
