@@ -1,4 +1,8 @@
 #include "stone.h"
+
+#include "card.h"
+#include "combination.h"
+#include "playerId.h"
 #include "utils_math.h"
 
 using namespace Combination;
