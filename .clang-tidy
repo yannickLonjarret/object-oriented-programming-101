@@ -9,5 +9,4 @@ Checks: >
   portability-*,
 
   -modernize-use-trailing-return-type
-WarningsAsErrors: >
-  '*'
+WarningsAsErrors: true
