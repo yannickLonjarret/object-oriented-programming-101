@@ -2,10 +2,11 @@
 
 #include <limits>
 #include <numeric>
+#include <vector>
 
 namespace utils::math {
 
-int binomialCoeff(const unsigned int n, const unsigned int k) {
+unsigned int binomialCoeff(const unsigned int n, const unsigned int k) {
     if (k > n) {
         return std::numeric_limits<int>::min();
     }
@@ -33,7 +34,7 @@ std::vector<std::vector<unsigned int>> k_combination(const unsigned int n, const
 
     while (true) {
         results.push_back(combo);
-        int i = k - 1;
+        auto i = static_cast<int>(k - 1);
 
         while (i >= 0 && combo.at(i) == n - k + i) {
             i--;
