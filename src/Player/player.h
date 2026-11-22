@@ -6,9 +6,11 @@
 #include <string_view>
 
 #include "card.h"
+#include "playerIDService.h"
 #include "playerId.h"
 
 namespace Agent {
+using namespace utils;
 class Player {
   private:
     std::string name;
@@ -17,7 +19,9 @@ class Player {
     size_t maxHandSize = 3;
 
   public:
-    Player(const std::string& playerName, const size_t& max) : name(playerName), maxHandSize(max) {}
+    Player(const std::string& playerName, const size_t& max) : name(playerName), maxHandSize(max) {
+        id = service::PlayerID::Fetch()->generateUniqueID(name);
+    }
     std::string_view getName() const noexcept { return name; }
     bool isHandEmpty() const noexcept { return hand.empty(); }
 
