@@ -6,17 +6,17 @@
 
 #include "playerId.h"
 namespace utils::service {
-class PlayerIDService {
+class PlayerID {
   private:
     std::set<Agent::PlayerID> database;
-    static std::unique_ptr<PlayerIDService> singleService;
+    static std::unique_ptr<PlayerID> singleService;
 
   public:
-    static const std::unique_ptr<PlayerIDService>& Service() noexcept;
+    static const std::unique_ptr<PlayerID>& Fetch() noexcept;
     Agent::PlayerID generateUniqueID(const std::string& base) noexcept;
 };
 
-std::unique_ptr<PlayerIDService> PlayerIDService::singleService = nullptr;
+std::unique_ptr<PlayerID> PlayerID::singleService = nullptr;
 } // namespace utils::service
 
 #endif
