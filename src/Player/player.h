@@ -16,17 +16,15 @@ class Player {
     std::string name;
     PlayerID id;
     std::vector<Cards::Card> hand;
-    size_t maxHandSize = 3;
+    size_t maxHandSize = 6;
 
   public:
-    Player(const std::string& playerName, const size_t& max) : name(playerName), maxHandSize(max) {
-        id = service::PlayerID::Fetch()->generateUniqueID(name);
-    }
+    Player(const std::string& playerName) : name(playerName) { id = service::PlayerID::Fetch()->generateUniqueID(name); }
     std::string_view getName() const noexcept { return name; }
     bool isHandEmpty() const noexcept { return hand.empty(); }
 
     bool try_addCard(const Cards::Card& c);
-    std::optional<Cards::Card> try_getCard(const size_t i);
+    std::optional<Cards::Card> try_getCard(const size_t i = 0);
 };
 
 } // namespace Agent
