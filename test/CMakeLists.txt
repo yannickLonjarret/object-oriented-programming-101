@@ -26,6 +26,7 @@ target_link_libraries(
   CompletionOrderTest
   CombinationTest
   UtilsMathTest
+  PlayerIDServiceTest
 )
 
 include(GoogleTest)
@@ -39,6 +40,7 @@ gtest_discover_tests(
   CombinationTest
 
   UtilsMathTest
+  PlayerIDServiceTest
 )
 
 # Subdirectories:
