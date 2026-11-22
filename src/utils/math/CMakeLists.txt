@@ -1,4 +1,6 @@
-target_sources(Utilities
+add_library(UtilsMath OBJECT)
+
+target_sources(UtilsMath
     PRIVATE
         utils_math.cpp
     PUBLIC

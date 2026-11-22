@@ -12,6 +12,7 @@ target_sources(Player
 target_link_libraries(Player
     PRIVATE
         PlayerId
+        Utilities
         Card
 )
 

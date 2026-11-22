@@ -10,6 +10,7 @@ target_link_libraries(PlayerTest
     Player
     PlayerId
     Card
+    Utilities
 )
 
 add_subdirectory(PlayerId)
