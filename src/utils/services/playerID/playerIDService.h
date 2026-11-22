@@ -15,8 +15,6 @@ class PlayerID {
     static const std::unique_ptr<PlayerID>& Fetch() noexcept;
     Agent::PlayerID generateUniqueID(const std::string& base) noexcept;
 };
-
-std::unique_ptr<PlayerID> PlayerID::singleService = nullptr;
 } // namespace utils::service
 
 #endif

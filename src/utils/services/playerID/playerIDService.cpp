@@ -8,6 +8,7 @@
 #include "playerId.h"
 
 namespace utils::service {
+std::unique_ptr<PlayerID> PlayerID::singleService = nullptr;
 
 const std::unique_ptr<PlayerID>& PlayerID::Fetch() noexcept {
     if (!singleService) {
