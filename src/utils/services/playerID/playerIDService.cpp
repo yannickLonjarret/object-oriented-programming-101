@@ -9,7 +9,7 @@
 
 namespace utils::service {
 
-const std::unique_ptr<PlayerIDService>& PlayerIDService::Service() {
+const std::unique_ptr<PlayerIDService>& PlayerIDService::Service() noexcept {
     if (!singleService) {
         singleService = std::make_unique<PlayerIDService>();
     }
@@ -17,7 +17,7 @@ const std::unique_ptr<PlayerIDService>& PlayerIDService::Service() {
     return singleService;
 }
 
-Agent::PlayerID PlayerIDService::generateUniqueID(const std::string& base) {
+Agent::PlayerID PlayerIDService::generateUniqueID(const std::string& base) noexcept {
     static std::mt19937 gen{std::random_device{}()};
     std::uniform_int_distribution<unsigned int> distrib(0, 9999);
 

@@ -2,17 +2,17 @@
 #define PLAYER_ID_SERVICE_H
 
 #include <memory>
-#include <unordered_set>
+#include <set>
 
 #include "playerId.h"
 namespace utils::service {
 class PlayerIDService {
   private:
-    std::unordered_set<Agent::PlayerID> database;
+    std::set<Agent::PlayerID> database;
     static std::unique_ptr<PlayerIDService> singleService;
 
   public:
-    static const std::unique_ptr<PlayerIDService>& Service();
+    static const std::unique_ptr<PlayerIDService>& Service() noexcept;
     Agent::PlayerID generateUniqueID(const std::string& base) noexcept;
 };
 
