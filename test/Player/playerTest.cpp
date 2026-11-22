@@ -36,7 +36,7 @@ TEST(PlayerTest, CardRetrieval_Success) {
     player.try_addCard(c);
 
     auto get = player.try_getCard();
-    EXPECT_TRUE(get.has_value());
+    ASSERT_TRUE(get.has_value());
     EXPECT_EQ(get.value(), c);
 }
 
