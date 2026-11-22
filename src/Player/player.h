@@ -15,7 +15,7 @@ class Player {
   private:
     std::string name;
     PlayerID id;
-    std::vector<Cards::Card> hand;
+    std::vector<Cards::ClanCard> hand;
     size_t maxHandSize = 6;
 
   public:
@@ -23,8 +23,8 @@ class Player {
     std::string_view getName() const noexcept { return name; }
     bool isHandEmpty() const noexcept { return hand.empty(); }
 
-    bool try_addCard(const Cards::Card& c);
-    std::optional<Cards::Card> try_getCard(const size_t i = 0);
+    bool try_addCard(const Cards::ClanCard& c);
+    std::optional<Cards::ClanCard> try_getCard(const size_t i = 0);
 };
 
 } // namespace Agent
