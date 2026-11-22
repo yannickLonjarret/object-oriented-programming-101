@@ -15,6 +15,7 @@ class Player {
   private:
     std::string name;
     PlayerID id;
+    // Given behaviour of try_getCard, std::hive would the best here
     std::vector<Cards::ClanCard> hand;
     size_t maxHandSize = 6;
 
