@@ -64,6 +64,6 @@ TEST(PlayerTest, CardRetrieval_FailureInputTooHigh) {
     for (int i = 0; i < maxHand; i++) {
         player.try_addCard(c);
     }
-
+    EXPECT_FALSE(player.try_getCard(5).has_value());
     EXPECT_FALSE(player.try_getCard(10).has_value());
 }

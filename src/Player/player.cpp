@@ -19,7 +19,7 @@ std::optional<Cards::ClanCard> Player::try_getCard(const size_t i) {
         return std::nullopt;
     }
 
-    if (hand.size() < i) {
+    if (hand.size() - 1 < i) {
         return std::nullopt;
     }
     Cards::ClanCard c(hand.at(i));
