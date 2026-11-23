@@ -13,7 +13,7 @@ bool Player::try_addCard(const Cards::ClanCard& c) {
     return true;
 }
 
-std::optional<Cards::ClanCard> Player::try_getCard(const size_t i) {
+std::optional<Cards::ClanCard> Player::try_getCard(const unsigned int i) {
     if (isHandEmpty()) {
         return std::nullopt;
     }
