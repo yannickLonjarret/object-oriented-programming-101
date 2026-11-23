@@ -1,0 +1,35 @@
+#include "playerIDService.h"
+
+#include <format>
+#include <memory>
+#include <random>
+#include <set>
+#include <string>
+
+#include "playerId.h"
+
+namespace utils::service {
+std::unique_ptr<PlayerID> PlayerID::singleService = nullptr;
+
+const std::unique_ptr<PlayerID>& PlayerID::Fetch() noexcept {
+    if (!singleService) {
+        singleService = std::make_unique<PlayerID>();
+    }
+
+    return singleService;
+}
+
+Agent::PlayerID PlayerID::generateUniqueID(const std::string& base) {
+    static std::mt19937 gen{std::random_device{}()};
+    constexpr unsigned int minGenBound = 0, maxGenBound = 9999;
+    std::uniform_int_distribution<unsigned int> distrib(minGenBound, maxGenBound);
+
+    Agent::PlayerID uniqueID(base);
+    while (!database.emplace(uniqueID).second) {
+        const std::string toHash{std::format("{}#{:04d}", base, distrib(gen))};
+        uniqueID = Agent::PlayerID(toHash);
+    }
+
+    return uniqueID;
+}
+} // namespace utils::service
