@@ -19,13 +19,14 @@ const std::unique_ptr<PlayerID>& PlayerID::Fetch() noexcept {
     return singleService;
 }
 
-Agent::PlayerID PlayerID::generateUniqueID(const std::string& base) noexcept {
+Agent::PlayerID PlayerID::generateUniqueID(const std::string& base) {
     static std::mt19937 gen{std::random_device{}()};
-    std::uniform_int_distribution<unsigned int> distrib(0, 9999);
+    constexpr unsigned int minGenBound = 0, maxGenBound = 9999;
+    std::uniform_int_distribution<unsigned int> distrib(minGenBound, maxGenBound);
 
     Agent::PlayerID uniqueID;
     do {
-        std::string toHash{std::format("{}#{:04d}", base, distrib(gen))};
+        const std::string toHash{std::format("{}#{:04d}", base, distrib(gen))};
         uniqueID = Agent::PlayerID(toHash);
     } while (!database.emplace(uniqueID).second);
 
