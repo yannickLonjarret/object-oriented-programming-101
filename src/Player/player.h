@@ -17,7 +17,7 @@ class Player {
     PlayerID id;
     // Given behaviour of try_getCard, std::hive would the best here
     std::vector<Cards::ClanCard> hand;
-    unsigned int maxHandSize = 6;
+    const unsigned int maxHandSize = 6;
 
   public:
     Player(const std::string& playerName) : name(playerName) { id = service::PlayerID::Fetch()->generateUniqueID(name); }
