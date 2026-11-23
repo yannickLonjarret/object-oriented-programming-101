@@ -4,6 +4,7 @@
 #include <memory>
 #include <random>
 #include <set>
+#include <string>
 
 #include "playerId.h"
 

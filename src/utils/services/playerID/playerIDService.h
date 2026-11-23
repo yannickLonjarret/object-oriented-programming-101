@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <set>
+#include <string>
 
 #include "playerId.h"
 namespace utils::service {

@@ -3,7 +3,6 @@
 #include <optional>
 
 #include "card.h"
-#include "playerId.h"
 
 namespace Agent {
 bool Player::try_addCard(const Cards::ClanCard& c) {
