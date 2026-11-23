@@ -24,11 +24,11 @@ Agent::PlayerID PlayerID::generateUniqueID(const std::string& base) {
     constexpr unsigned int minGenBound = 0, maxGenBound = 9999;
     std::uniform_int_distribution<unsigned int> distrib(minGenBound, maxGenBound);
 
-    Agent::PlayerID uniqueID;
-    do {
+    Agent::PlayerID uniqueID(base);
+    while (!database.emplace(uniqueID).second) {
         const std::string toHash{std::format("{}#{:04d}", base, distrib(gen))};
         uniqueID = Agent::PlayerID(toHash);
-    } while (!database.emplace(uniqueID).second);
+    }
 
     return uniqueID;
 }
